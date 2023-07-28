@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import "./createEvent.css"
-import axios from  'axios'
+import axios from 'axios'
 
 
 export default props => {
@@ -14,40 +14,42 @@ export default props => {
         city: "",
         address: "",
         time: "",
-        mobile: "", 
+        mobile: "",
     });
 
-    const [img, setImg] = useState({image: null,})
+    const [img, setImg] = useState({ image: null, })
 
 
-    return(
+    return (
         <div>
-             
+            <form action="">
                 <label>Nome do Evento:</label>
-            
-        
+
+
                 <label>Data:</label>
-                
-                
+
+
                 <label>Estado:</label>
-               
+
 
                 <label>Cidade:</label>
-                
-                
+
+
                 <label>Endereço:</label>
-                
+
 
                 <label>Horário de início:</label>
-               
+
 
                 <label>Contato:</label>
-                <input type="tel" name="mobile"  pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}" required placeholder="(xx) xxxxx-xxxx" />
-                
+                <input type="tel" name="mobile" pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}" required placeholder="(xx) xxxxx-xxxx" />
+
                 <label>Imagem do evento</label>
-               
-             
+
+
                 <input type="button" value="SEND" />
+            </form>
+
 
         </div>
     )
