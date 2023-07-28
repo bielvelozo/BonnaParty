@@ -28,7 +28,6 @@ const createUserFormSchema = z.object({
 })
 
 export default function login() {
-    const [inputs, setInputs] = useState('')
 
     const { 
         register,
@@ -39,8 +38,11 @@ export default function login() {
     })
 
      async function createUser(data) {
-        setInputs(JSON.stringify(data, null, 2)) // estudar
-        console.log(data)
+        await fetch("http://localhost/bonna_party/src/api/register.php" , {
+            method:'POST',
+            mode:'_cors_',
+            body:data
+        })
     }
 
 
