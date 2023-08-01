@@ -37,12 +37,19 @@ export default function login() {
         resolver: zodResolver(createUserFormSchema)
     })
 
-     async function createUser(data) {
+   async function createUser(data) {
+
+        console.count('oi')
         await fetch("http://localhost/bonna_party/src/api/register.php" , {
             method:'POST',
-            mode:'_cors_',
-            body:data
-        })
+            body: JSON.stringify(data),
+            headers: {"Content-type": "application/json; charset=UTF-8"}
+          })
+          .then(response => response.json()) 
+          .then(json => console.log(json))
+          .catch(err => console.log(err))
+
+
     }
 
 
