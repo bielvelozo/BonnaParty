@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from "react"
 import "./Register.css"
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -13,8 +12,8 @@ const createUserFormSchema = z.object({
         .transform(name => {
             return name.trim().split(' ').map(word => {
                 return word[0]
-                .toLocaleUpperCase()
-                .concat(word.substring(1))
+                    .toLocaleUpperCase()
+                    .concat(word.substring(1))
             }).join(' ')
         })
     ,
@@ -23,31 +22,28 @@ const createUserFormSchema = z.object({
         .email('Formato de e-mail inválido')
     ,
     password: z.string()
-        .min(6, 'A senha precisa de no mínimo 6 caracteres')
+        .min(6, 'A senha precisa ter no mínimo 6 caracteres')
     ,
 })
 
-export default function login() {
+export default function register() {
 
-    const { 
+    const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm({
-        resolver: zodResolver(createUserFormSchema)
-    })
+    } = useForm(zodResolver(createUserFormSchema))
 
-   async function createUser(data) {
+    async function createUser(data) {
 
-        console.count('oi')
-        await fetch("http://localhost/bonna_party/src/api/register.php" , {
-            method:'POST',
+        await fetch("http://localhost/bonna_party/src/api/register.php", {
+            method: 'POST',
             body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
-          })
-          .then(response => response.json()) 
-          .then(json => console.log(json))
-          .catch(err => console.log(err))
+            headers: { "Content-type": "application/json; charset=UTF-8" }
+        })
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.log(err))
 
 
     }

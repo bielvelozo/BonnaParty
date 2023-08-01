@@ -17,13 +17,12 @@ export default props => {
                 width={0}
                 height={0}
                 sizes="100vw"
+                alt="BonnaParty logo"
                 style={{ width: '100px', height: 'auto', margin:'10px 130px 10px 0 ' }}
                 
             />
 
             
-           
-
             <div className="header_client">
                 <ul>
                     <li className="clien_search">
