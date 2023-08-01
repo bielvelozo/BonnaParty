@@ -6,9 +6,9 @@ export default props => {
         <header>
             <nav className="navbar">
                 <ul>
-                    <li><a href="#"></a>Explorar Eventos</li>
-                    <li><a href="#"></a>Cadastrar eventos</li>
-                    <li><a href="#"></a>Central de Ajuda</li>
+                    <li><a href="#">Explorar Eventos</a></li>
+                    <li><a href="#">Cadastrar eventos</a></li>
+                    <li><a href="#">Central de Ajuda</a></li>
                 </ul>
             </nav>
 
@@ -17,7 +17,8 @@ export default props => {
                 width={0}
                 height={0}
                 sizes="100vw"
-                style={{ width: '120px', height: 'auto' }}
+                style={{ width: '100px', height: 'auto', margin:'10px 130px 10px 0 ' }}
+                
             />
 
             
