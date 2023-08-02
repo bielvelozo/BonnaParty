@@ -1,16 +1,26 @@
 'use client'
 
 
-import '../register/Register.css'
+import {
+    FormColumn,
+    FormWrapper,
+    FormInput,
+    FormSection,
+    FormRow,
+    FormLabel,
+    FormInputRow,
+    FormMessage,
+    FormButton,
+    FormTitle,
+} from './LoginStyles';
+import { Container } from '../../globalStyles';
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from 'react'
-import { useRouter } from "next/router"
+import { Form } from 'react-router-dom';
 
 
-
-const createLoginFormSchema = z.object({
+const createUserFormSchema = z.object({
     email: z.string()
         .nonempty('O email é obrigatório')
         .email('Formato de email inválido'),
@@ -20,53 +30,102 @@ const createLoginFormSchema = z.object({
 })
 
 export default function login() {
-    const [user , setUser] = useState()
-    const router = useRouter()
 
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm( zodResolver(createLoginFormSchema) )
+    } = useForm({ resolver: zodResolver(createUserFormSchema) })
 
 
     async function readUser(data) {
-    
-           fetch("http://localhost/bonna_party/src/api/login.php", {
-               method:'POST',
-               body: JSON.stringify(data),
-               headers: {"Content-type": "application/json; charset=UTF-8"}
-   
-           })
-               .then(response => response.json())
-               .then(json => {
-                    setTimeout(function(){
-                        router.push('/loged')
-                    }, 50000)
-                    setUser(json)
-               })
-               .catch(err => console.log(err))
 
-   
-   }
+        // fetch("http://localhost/bonna_party/src/api/login.php", {
+        //     method: 'POST',
+        //     body: JSON.stringify(data),
+        //     headers: { "Content-type": "application/json; charset=UTF-8" }
+
+        // })
+        //     .then(response => response.json())
+        //     .then(json => {
+
+        //         localStorage.setItem('name', json.name,)
+        //         localStorage.setItem('id', json.id,)
+        //         localStorage.setItem('email', json.email,)
+
+        //         // location.reload()
+        //     })
+        //     .catch(err => console.log(err))
+
+        console.log(data)
+
+    }
+
+    const err = () => {
+        const msg = []
+        if (errors) {
+            for (let i in errors) {
+                msg.push(errors[i].message)
+            }
+        }
+
+        return msg
+    }
+
+
+    const messageVariants = {
+        hidden: { y: 30, opacity: 0 },
+        animate: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.4 } },
+    };
 
     return (
-        <div className="container">
-            <form onSubmit={handleSubmit(readUser)}>
+        <FormSection>
 
-                <label htmlFor="">Email:</label>
-                <input type="email" {...register('email')} />
-                {errors.email && <span>{errors.email.message}</span>}
+            <Container>
+                <FormRow>
+                    <FormColumn>
+                        <FormTitle>Login</FormTitle>
+                        <FormWrapper onSubmit={handleSubmit(readUser)}>
+                            <FormInputRow>
+                                <FormLabel>Email:</FormLabel>
+                                <FormInput type="email" {...register('email')} />
+                            </FormInputRow>
+                            <FormInputRow>
+                                <FormLabel>Senha:</FormLabel>
+                                <FormInput type="password"{...register('password')} />
+                            </FormInputRow>
 
-                <label htmlFor="">Senha:</label>
-                <input type="password"{...register('password')} />
-                {errors.password && <span>{errors.password.message}</span>}
+                            <FormButton type='submit'>Login</FormButton>
+                        </FormWrapper>
 
-                <button type="submit">Login</button>
-            </form>
+                        {errors &&
+                            <FormMessage
+                                variants={messageVariants}
+                                initial='hidden'
+                                animate='animate'>
+                                {err().map((e, ix) => <div key={ix}>{e}</div>)}
+                            </FormMessage>
+                        }
 
-            <pre>{user}</pre>
+                    </FormColumn>
+                </FormRow>
+            </Container>
 
-        </div>
+
+        </FormSection>
+
     )
 }
+
+{/* <form onSubmit={handleSubmit(readUser)}>
+
+    <label htmlFor="">Email:</label>
+    <input type="email" {...register('email')} />
+    {errors.email && <span>{errors.email.message}</span>}
+
+    <label htmlFor="">Senha:</label>
+    <input type="password"{...register('password')} />
+    {errors.password && <span>{errors.password.message}</span>}
+
+    <button type="submit">Login</button>
+</form> */}

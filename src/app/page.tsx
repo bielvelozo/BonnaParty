@@ -9,11 +9,7 @@ import Header from '../components/header/menu'
 export default function Home() {
   return (
     <>
-      {/* <CreateEvent/> */}
-      {/* <ContentEvent/> */}
       <Header></Header>
-      <Register></Register>
-      <Login></Login>
 
     </>
   )
