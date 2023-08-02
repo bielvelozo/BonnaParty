@@ -1,8 +1,13 @@
 'use client'
+
+
 import '../register/Register.css'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
+import { useRouter } from "next/router"
+
 
 
 const createLoginFormSchema = z.object({
@@ -15,23 +20,35 @@ const createLoginFormSchema = z.object({
 })
 
 export default function login() {
+    const [user , setUser] = useState()
+    const router = useRouter()
+
     const {
         register,
         handleSubmit,
         formState: { errors }
     } = useForm( zodResolver(createLoginFormSchema) )
 
-     async function readUser(data) {
-        fetch("http://localhost/bonna_party/src/api/register.php", {
-            method:'GET',
-            body: JSON.stringify(data),
-            headers: {"Content-type": "application/json; charset=UTF-8"}
 
-        })
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .catch(err => console.log(err))
-    }
+    async function readUser(data) {
+    
+           fetch("http://localhost/bonna_party/src/api/login.php", {
+               method:'POST',
+               body: JSON.stringify(data),
+               headers: {"Content-type": "application/json; charset=UTF-8"}
+   
+           })
+               .then(response => response.json())
+               .then(json => {
+                    setTimeout(function(){
+                        router.push('/loged')
+                    }, 50000)
+                    setUser(json)
+               })
+               .catch(err => console.log(err))
+
+   
+   }
 
     return (
         <div className="container">
@@ -47,6 +64,8 @@ export default function login() {
 
                 <button type="submit">Login</button>
             </form>
+
+            <pre>{user}</pre>
 
         </div>
     )
