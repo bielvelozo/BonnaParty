@@ -1,21 +1,31 @@
 'use client'
 
+import {
+    FormColumn,
+    FormWrapper,
+    FormInput,
+    FormSection,
+    FormRow,
+    FormLabel,
+    FormInputRow,
+    FormMessage,
+    FormButton,
+    FormTitle,
+    FormSwitch
+} from '../login/LoginStyles';
+import { Container } from '../../globalStyles';
+import Login from '../login/Login'
 import "./Register.css"
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect, useState } from "react"
 
 
 const createUserFormSchema = z.object({
     name: z.string()
         .nonempty('O nome é obrigatório ')
-        .transform(name => {
-            return name.trim().split(' ').map(word => {
-                return word[0]
-                    .toLocaleUpperCase()
-                    .concat(word.substring(1))
-            }).join(' ')
-        })
+        .min(3, 'O nome de usuário precisa ter no mínimo 3 caracteres')
     ,
     email: z.string()
         .nonempty('O e-mail é obrigatório ')
@@ -27,12 +37,23 @@ const createUserFormSchema = z.object({
 })
 
 export default function register() {
+    const [status, setStatus] = useState('')
+
+    const verify = () => {
+        let test = false
+        
+        if (Object.keys(errors).length !== 0 || status !== '' ) {
+            test = true
+        }
+      
+        return test
+    }
 
     const {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm(zodResolver(createUserFormSchema))
+    } = useForm({ resolver: zodResolver(createUserFormSchema) })
 
     async function createUser(data) {
 
@@ -42,33 +63,79 @@ export default function register() {
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
             .then(response => response.json())
-            .then(json => console.log(json))
-            .catch(err => console.log(err))
-
+            .then(json => setStatus(json.message))
+            .catch(err => setStatus(err))
 
     }
 
+    const err = () => {
+        const msg = []
+        for (let i in errors) {
+            msg.push(errors[i].message)
+        }
+
+        return msg[0]
+    }
+
+
+
+    const messageVariants = {
+        hidden: { y: 30, opacity: 0 },
+        animate: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.4 } },
+    };
+
+    // const changeSelect = () => {
+    //     return 'selected;
+    // }
+
 
     return (
-        <div className="container">
-            <form onSubmit={handleSubmit(createUser)}>
-                <label htmlFor="">Nome completo:</label>
-                <input type="text" name="name" {...register("name")} />
-                {errors.name && <span>{errors.name.message}</span>}
+        <FormSection>
 
-                <label htmlFor="">Email:</label>
-                <input type="email" {...register('email')} />
-                {errors.email && <span>{errors.email.message}</span>}
+            <Container>
+                <FormRow>
+                    <FormColumn>
+                        <FormSwitch>
+                            <FormTitle>Cadastro</FormTitle>
+                            <FormTitle>Login</FormTitle>
+                        </FormSwitch>
+                        <FormWrapper onSubmit={handleSubmit(createUser)}>
+                            <FormInputRow>
+                                <FormLabel>Nome de Usuário</FormLabel>
+                                <FormInput type="name" {...register('name')} />
+                            </FormInputRow>
+                            <FormInputRow>
+                                <FormLabel>Email</FormLabel>
+                                <FormInput type="email"{...register('email')} />
+                            </FormInputRow>
+                            <FormInputRow>
+                                <FormLabel>Senha</FormLabel>
+                                <FormInput type="password"{...register('password')} />
+                            </FormInputRow>
+
+                            <FormButton type='submit'>Cadastrar</FormButton>
+                        </FormWrapper>
 
 
-                <label htmlFor="">Senha:</label>
-                <input type="password" {...register('password')} />
-                {errors.password && <span>{errors.password.message}</span>}
 
 
-                <button type="submit">Registar</button>
-            </form>
 
-        </div>
+                        {verify() &&
+                            <FormMessage
+                                variants={messageVariants}
+                                initial='hidden'
+                                animate='animate'>
+                                {err()}
+                                {status}
+                            </FormMessage>
+                        }
+
+
+                    </FormColumn>
+                </FormRow>
+            </Container>
+
+
+        </FormSection>
     )
 }

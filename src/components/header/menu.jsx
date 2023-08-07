@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import './menu.css'
-import Login from '../login/Login'
+import Register from '../register/Register'
 import { useState } from "react"
 
 export default props => {
@@ -12,7 +12,6 @@ export default props => {
 
     let show = localStorage.getItem("id") > 0
 
-    console.log(show)
     const handleLogin = (e) => {
         e.preventDefault();
         setShowLogin(true);
@@ -76,7 +75,7 @@ export default props => {
            
         </header>
 
-        {showLogin && <Login/>}
+        {showLogin && <Register/>}
 
         </>
     )

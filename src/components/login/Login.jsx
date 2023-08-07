@@ -40,22 +40,22 @@ export default function login() {
 
     async function readUser(data) {
 
-        // fetch("http://localhost/bonna_party/src/api/login.php", {
-        //     method: 'POST',
-        //     body: JSON.stringify(data),
-        //     headers: { "Content-type": "application/json; charset=UTF-8" }
+        fetch("http://localhost/bonna_party/src/api/login.php", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { "Content-type": "application/json; charset=UTF-8" }
 
-        // })
-        //     .then(response => response.json())
-        //     .then(json => {
+        })
+            .then(response => response.json())
+            .then(json => {
 
-        //         localStorage.setItem('name', json.name,)
-        //         localStorage.setItem('id', json.id,)
-        //         localStorage.setItem('email', json.email,)
+                localStorage.setItem('name', json.name,)
+                localStorage.setItem('id', json.id,)
+                localStorage.setItem('email', json.email,)
 
-        //         // location.reload()
-        //     })
-        //     .catch(err => console.log(err))
+                location.reload()
+            })
+            .catch(err => console.log(err))
 
         console.log(data)
 
@@ -87,11 +87,11 @@ export default function login() {
                         <FormTitle>Login</FormTitle>
                         <FormWrapper onSubmit={handleSubmit(readUser)}>
                             <FormInputRow>
-                                <FormLabel>Email:</FormLabel>
+                                <FormLabel>Email</FormLabel>
                                 <FormInput type="email" {...register('email')} />
                             </FormInputRow>
                             <FormInputRow>
-                                <FormLabel>Senha:</FormLabel>
+                                <FormLabel>Senha</FormLabel>
                                 <FormInput type="password"{...register('password')} />
                             </FormInputRow>
 

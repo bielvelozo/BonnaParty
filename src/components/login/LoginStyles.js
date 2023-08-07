@@ -3,15 +3,26 @@ import { motion } from 'framer-motion';
 
 export const FormSection = styled.div`
 	padding: 160px 0;
-	background-color: tranparent;
+	background-color: rgba(10, 10, 10, 0.25);
+	
 `;
 
 export const FormTitle = styled.h1`
 	margin-bottom: 24px;
-	font-size: 48px;
+	text-transform: uppercase;
+	font-size: 1.3em;
 	line-height: 1.1;
 	font-weight: 600;
+	background-color:${({selected}) => (selected ? '#b9b9b9' : 'trasparent')};
+	padding: 7px 9px;
+	border-radius: 50px;  
 `;
+
+export const FormSwitch = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+`
 
 export const FormContainer = styled.div`
 	display: flex;
@@ -23,7 +34,7 @@ export const FormColumn = styled.div`
 	border: 20px;
 	/* padding: ${({ small }) => (small ? '0 50px' : '0 15px')}; */
 	flex: 1;
-	max-width: 60%;
+	max-width: 50%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -56,7 +67,7 @@ export const FormWrapper = styled.form`
 `;
 
 export const FormMessage = styled(motion.div)`
-	color: ${({ error }) => (error ? 'red' : 'green')};
+	color: #333;
 	padding: 5px;
 	text-align: center;
 	margin-top: 1rem;
@@ -89,8 +100,8 @@ export const FormInput = styled.input`
 
 export const FormLabel = styled.label`
 	display: inline-block;
-	font-size: 0.9rem;
-	margin-bottom: 0.3rem;
+	font-size: 0.76rem;
+	margin-bottom: 0.2rem;
 	color: #afafaf;
 `;
 export const FormImgWrapper = styled.div`
@@ -115,8 +126,8 @@ export const FormButton = styled.button`
 	/* color: #fff; */
 	outline: none;
 	width: 100%;
-	font-size: 1.4rem;
-	padding: 5px 15px;
+	font-size: 1.2rem;
+	padding: 3px 13px;
 	border: 2px solid black;
 	cursor: pointer;
 	position: relative;
