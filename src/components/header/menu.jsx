@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import './menu.css'
-import Register from '../register/Register'
+import FormUser from '../FormUser/FormUser'
 import { useState } from "react"
 
 export default props => {
@@ -75,7 +75,7 @@ export default props => {
            
         </header>
 
-        {showLogin && <Register/>}
+        {showLogin && <FormUser/>}
 
         </>
     )

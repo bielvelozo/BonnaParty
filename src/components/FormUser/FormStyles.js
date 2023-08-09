@@ -13,10 +13,14 @@ export const FormTitle = styled.h1`
 	font-size: 1.3em;
 	line-height: 1.1;
 	font-weight: 600;
-	background-color:${({selected}) => (selected ? '#b9b9b9' : 'trasparent')};
+	background-color:${props => props.selected};
 	padding: 7px 9px;
 	border-radius: 50px;  
 `;
+
+FormTitle.defaultProps ={
+	selected: 'trasparent'
+}
 
 export const FormSwitch = styled.div`
 	width: 100%;

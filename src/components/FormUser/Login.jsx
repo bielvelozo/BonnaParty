@@ -12,7 +12,7 @@ import {
     FormMessage,
     FormButton,
     FormTitle,
-} from './LoginStyles';
+} from './FormStyles';
 import { Container } from '../../globalStyles';
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -79,40 +79,32 @@ export default function login() {
     };
 
     return (
-        <FormSection>
 
-            <Container>
-                <FormRow>
-                    <FormColumn>
-                        <FormTitle>Login</FormTitle>
-                        <FormWrapper onSubmit={handleSubmit(readUser)}>
-                            <FormInputRow>
-                                <FormLabel>Email</FormLabel>
-                                <FormInput type="email" {...register('email')} />
-                            </FormInputRow>
-                            <FormInputRow>
-                                <FormLabel>Senha</FormLabel>
-                                <FormInput type="password"{...register('password')} />
-                            </FormInputRow>
+        <>
+            <FormWrapper onSubmit={handleSubmit(readUser)}>
+                <FormInputRow>
+                    <FormLabel>Email</FormLabel>
+                    <FormInput type="email" {...register('email')} />
+                </FormInputRow>
+                <FormInputRow>
+                    <FormLabel>Senha</FormLabel>
+                    <FormInput type="password"{...register('password')} />
+                </FormInputRow>
 
-                            <FormButton type='submit'>Login</FormButton>
-                        </FormWrapper>
+                <FormButton type='submit'>Login</FormButton>
+            </FormWrapper>
 
-                        {errors &&
-                            <FormMessage
-                                variants={messageVariants}
-                                initial='hidden'
-                                animate='animate'>
-                                {err().map((e, ix) => <div key={ix}>{e}</div>)}
-                            </FormMessage>
-                        }
+            {errors &&
+                <FormMessage
+                    variants={messageVariants}
+                    initial='hidden'
+                    animate='animate'>
+                    {err().map((e, ix) => <div key={ix}>{e}</div>)}
+                </FormMessage>
+            }
 
-                    </FormColumn>
-                </FormRow>
-            </Container>
+        </>
 
-
-        </FormSection>
 
     )
 }
