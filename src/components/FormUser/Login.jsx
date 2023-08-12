@@ -13,11 +13,11 @@ import {
     FormButton,
     FormTitle,
 } from './FormStyles';
-import { Container } from '../../globalStyles';
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Form } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const createUserFormSchema = z.object({
@@ -30,6 +30,7 @@ const createUserFormSchema = z.object({
 })
 
 export default function login() {
+    const [status, setStatus] = useState('')
 
     const {
         register,
@@ -37,39 +38,48 @@ export default function login() {
         formState: { errors }
     } = useForm({ resolver: zodResolver(createUserFormSchema) })
 
+    const verify = () => {
+        let test = false
+
+        if (Object.keys(errors).length !== 0 || status !== '') {
+            test = true
+        }
+
+        return test
+    }
+
 
     async function readUser(data) {
 
-        fetch("http://localhost/bonna_party/src/api/login.php", {
+        await fetch("http://localhost/bonna_party/src/api/login.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { "Content-type": "application/json; charset=UTF-8" }
 
         })
-            .then(response => response.json())
-            .then(json => {
+        .then(response => response.json())
+        .then(json => {
+            setStatus(json.message)
 
-                localStorage.setItem('name', json.name,)
-                localStorage.setItem('id', json.id,)
-                localStorage.setItem('email', json.email,)
+            localStorage.setItem('name', json.name,)
+            localStorage.setItem('id', json.id,)
+            localStorage.setItem('email', json.email,)
 
-                location.reload()
-            })
-            .catch(err => console.log(err))
+            location.reload()
+        })
+        .catch(err => setStatus(err))
 
-        console.log(data)
+       
 
     }
 
     const err = () => {
         const msg = []
-        if (errors) {
-            for (let i in errors) {
-                msg.push(errors[i].message)
-            }
+        for (let i in errors) {
+            msg.push(errors[i].message)
         }
 
-        return msg
+        return msg[0]
     }
 
 
@@ -94,12 +104,13 @@ export default function login() {
                 <FormButton type='submit'>Login</FormButton>
             </FormWrapper>
 
-            {errors &&
+            {verify() &&
                 <FormMessage
                     variants={messageVariants}
                     initial='hidden'
                     animate='animate'>
-                    {err().map((e, ix) => <div key={ix}>{e}</div>)}
+                    {err()}
+                    {status}
                 </FormMessage>
             }
 
@@ -108,16 +119,3 @@ export default function login() {
 
     )
 }
-
-{/* <form onSubmit={handleSubmit(readUser)}>
-
-    <label htmlFor="">Email:</label>
-    <input type="email" {...register('email')} />
-    {errors.email && <span>{errors.email.message}</span>}
-
-    <label htmlFor="">Senha:</label>
-    <input type="password"{...register('password')} />
-    {errors.password && <span>{errors.password.message}</span>}
-
-    <button type="submit">Login</button>
-</form> */}
