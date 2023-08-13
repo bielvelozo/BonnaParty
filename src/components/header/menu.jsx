@@ -8,7 +8,7 @@ import { useState } from "react"
 export default props => {
 
     const [showLogin , setShowLogin] = useState(false)
-    const [showUl , setShowUl] = useState(false)
+
 
     let show = localStorage.getItem("id") > 0
 
@@ -19,10 +19,9 @@ export default props => {
         return false; 
     };
 
-    const handleUl = (e) =>{
+    const handleProfile = (e) =>{
         e.preventDefault();
-        setShowUl(true);
-
+        
         return false; 
     }
 
@@ -56,18 +55,10 @@ export default props => {
                     <li className="clien_like">
                         <a href=""><Image src={"/assets/like.png"} width={20} height={20} alt="search"/></a>
                     </li>
-                    <li>
-                        {localStorage.getItem("name")}
-                    </li>
-                     <li className="client_profile" onClick={show ? handleUl : handleLogin}
+                     <li className="client_profile" onClick={show ? handleProfile : handleLogin}
                         >
                         <a href=""><Image src={"/assets/profile.png"} width={20} height={20} alt="search"/></a>
-                        {showUl &&
-                         <ul>
-                            <li>Ver Perfil</li>
-                            <li>Sair</li>
-                        </ul>
-                        }
+
                     </li>
                 </ul>
             </div>
