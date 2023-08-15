@@ -28,8 +28,6 @@ export const StyledNav = styled.ul`
         font-size: 0.9em
     }
 
-
-
 `
 
 export const LinksNav = styled.div`
