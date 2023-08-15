@@ -8,6 +8,7 @@ import Login from '../components/FormUser/Login'
 import Highlight from '../components/Highlights/Highlights'
 import Header from '../components/header/Header'
 import Filter from '../components/Filter/Filter'
+import  Main  from '../components/Main/Main'
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
       <Highlight/>
       <Header/>
       <Filter/>
+      <Main/>
     </>
   )
 }
