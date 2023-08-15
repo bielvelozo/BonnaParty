@@ -13,7 +13,7 @@ export const StyledNav = styled.ul`
     list-style: none;
     
     li{
-        margin
+        margin-left: 10px
     }
     a {
         text-decoration: none;

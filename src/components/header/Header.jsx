@@ -32,11 +32,12 @@ function Header() {
     return (
         <>
         <StyledHeader>
-            <StyledNav>
+            <StyledNav >
     
                     <li><a href="#">Explorar Eventos</a></li>
                     <li><a href="#">Cadastrar eventos</a></li>
-
+                    <li><a href="#">Central de Ajuda</a></li>
+              
             </StyledNav>
 
             <Image 
