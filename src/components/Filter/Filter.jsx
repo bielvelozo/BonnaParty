@@ -1,10 +1,12 @@
 'use client'
 
 import * as React from 'react';
+import { FilterContainer } from './Filter.style'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Typography } from '@mui/material';
 
 const regioesSP = [
     "Grande São Paulo",
@@ -29,26 +31,32 @@ function Filter() {
     const handleChange = (event) => {
         setAge(event.target.value);
     };
-    
-    return (
-        <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-standard-label">Região</InputLabel>
-            <Select
-                labelId="demo-simple-select-standard-label"
-                id="demo-simple-select-standard"
-                value={age}
-                onChange={handleChange}
-                label="Região"
-            >
-                <MenuItem value="">
-                    <em>Nenhuma</em>
-                </MenuItem>
-                {regioesSP.map((regiao, i) => (
-                    <MenuItem key={i} value={regiao}>{regiao}</MenuItem>
-                ))}
 
-            </Select>
-        </FormControl>
+    return (
+        <FilterContainer>
+            <Typography variant='subtitle1' sx={{marginBottom:1.3}}>Eventos em:</Typography>
+
+      
+
+                <FormControl variant="standard" sx={{ minWidth: 120 , m:1 }}>
+                    <InputLabel>Região</InputLabel>
+                    <Select
+                        value={age}
+                        onChange={handleChange}
+                        label="Região"
+
+                    >
+                        <MenuItem value="">
+                            <em>Nenhuma</em>
+                        </MenuItem>
+                        {regioesSP.map((regiao, i) => (
+                            <MenuItem key={i} value={regiao}>{regiao}</MenuItem>
+                        ))}
+
+                    </Select>
+                </FormControl>
+        
+        </FilterContainer>
     )
 }
 
