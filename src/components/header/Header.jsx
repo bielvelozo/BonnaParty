@@ -11,6 +11,8 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
 
 import Image from "next/image"
@@ -18,6 +20,8 @@ import FormUser from '../FormUser/FormUser'
 import { useState } from "react"
 import { MenuItem } from '@mui/material';
 import zIndex from '@mui/material/styles/zIndex.js';
+import { white } from '@mui/material/colors';
+import { withTheme } from 'styled-components';
 
 
 function Header() {
@@ -75,9 +79,8 @@ function Header() {
                    
 
         <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-            <Typography sx={{ minWidth: 100}}>Contact</Typography>
-            <Typography sx={{ minWidth: 100 }}>Profile</Typography>
-        
+            <SearchIcon/>
+            <FavoriteBorderIcon sx={{ ml: 2 }}/>
             <IconButton
                 onClick={show ? handleProfile : handleLogin}
                 size="small"
