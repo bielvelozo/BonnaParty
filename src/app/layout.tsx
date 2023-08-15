@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import { Raleway } from 'next/font/google'
 
-
-
+const raleway = Raleway({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={raleway.className}>{children}</body>
     </html>
   )
 }

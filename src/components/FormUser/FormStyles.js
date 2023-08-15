@@ -10,12 +10,13 @@ export const FormSection = styled.div`
 export const FormTitle = styled.h1`
 	margin-bottom: 24px;
 	text-transform: uppercase;
-	font-size: 1.3em;
-	line-height: 1.1;
+	font-size: 1.05em;
+	line-height: 1.2;
 	font-weight: 600;
 	background-color:${props => props.selected};
-	padding: 7px 9px;
+	padding: 10px 12px;
 	border-radius: 50px;  
+	border: 1px solid black
 `;
 
 FormTitle.defaultProps ={
@@ -26,6 +27,7 @@ export const FormSwitch = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-around;
+	margin-bottom: 10px
 `
 
 export const FormContainer = styled.div`

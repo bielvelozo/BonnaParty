@@ -1,13 +1,28 @@
 'use client'
 
-import './HeaderStyle.css'
+import{ 
+    ImageDiv,
+  StyledHeader,
+  StyledLi,
+  StyledNav
+ } from './header.style.jsx'
+
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link'
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Avatar from '@mui/material/Avatar';
+
 import Image from "next/image"
 import FormUser from '../FormUser/FormUser'
 import { useState } from "react"
+import { MenuItem } from '@mui/material';
+import zIndex from '@mui/material/styles/zIndex.js';
+
 
 function Header() {
 
-    const [showLogin, setShowLogin] = useState(false)
+    const [showLogin , setShowLogin] = useState(false)
 
 
     let show = localStorage.getItem("id") > 0
@@ -15,67 +30,68 @@ function Header() {
     const handleLogin = (e) => {
         e.preventDefault();
         setShowLogin(true);
-
-        return false;
+        
+        return false; 
     };
 
-    const handleProfile = (e) => {
+    const handleProfile = (e) =>{
         e.preventDefault();
-
-        return false;
+        
+        return false; 
     }
 
     return (
         <>
-            <header>
-                <div className="navbar">
-                    <ul >
+        <StyledHeader>
+        
+        <Box sx={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            textAlign: 'center',
+            zIndex:'10'
+            }}>
+                <MenuItem>Explorar Eventos</MenuItem>
+                <MenuItem>Cadastrar Eventos</MenuItem>
+                <MenuItem>Central de Ajuda</MenuItem>
+         </Box>
 
-                        <li><a href="#">Explorar Eventos</a></li>
-                        <li><a href="#">Cadastrar eventos</a></li>
-                        <li><a href="#">Central de Ajuda</a></li>
+        <ImageDiv>
 
-                    </ul>
-            </div>
-            
+            <Image 
+                src={'/assets/white_logo.png'}
+                width={0}
+                height={0}
+                sizes="100vw"
+                alt="BonnaParty logo"
+                style={{ 
+                    width: '100px', 
+                    height: 'auto', 
+                    margin: '0 auto'
+                }}
+               
+                
+            />
+        </ImageDiv>
+                   
 
-            <div className="div_image">
-                <Image
-                    src={'/assets/white_logo.png'}
-                    width={0}
-                    height={0}
-                    sizes="100vw"
-                    alt="BonnaParty logo"
-                    style={{ 
-                        width: '100px', 
-                        height: 'auto',
-                        margin: ' 0 auto'
-                    }}
+        <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
+            <Typography sx={{ minWidth: 100}}>Contact</Typography>
+            <Typography sx={{ minWidth: 100 }}>Profile</Typography>
+        
+            <IconButton
+                onClick={show ? handleProfile : handleLogin}
+                size="small"
+                sx={{ ml: 2 }}
+                
+            >
+                <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+            </IconButton>
+      </Box>
 
-                />
-            </div>
+           
+        </StyledHeader>
 
-
-                <div className="header_client">
-                    <ul>
-                        <li className="clien_search">
-                            <a href=""><Image src={"/assets/search.png"} width={20} height={20} alt="search" /></a>
-                        </li>
-                        <li className="clien_like">
-                            <a href=""><Image src={"/assets/like.png"} width={20} height={20} alt="search" /></a>
-                        </li>
-                        <li className="client_profile" onClick={() => show ? handleProfile : handleLogin}
-                        >
-                            <a href=""><Image src={"/assets/profile.png"} width={20} height={20} alt="search" /></a>
-
-                        </li>
-                    </ul>
-                </div>
-
-
-            </header>
-
-            {showLogin && <FormUser />}
+        {showLogin && <FormUser/>}
 
         </>
     )
