@@ -7,12 +7,14 @@ import Register from '../components/FormUser/Register'
 import Login from '../components/FormUser/Login'
 import Highlight from '../components/Highlights/Highlights'
 import Header from '../components/header/Header'
+import Filter from '../components/Filter/Filter'
 
 export default function Home() {
   return (
     <>
-      <Header></Header>
       <Highlight/>
+      <Header/>
+      <Filter/>
     </>
   )
 }

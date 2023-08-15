@@ -2,10 +2,19 @@ import styled from 'styled-components';
 
 export const StyledHeader = styled.div`
     background-color: transparent;
+    
+    width: 100vw;
     height:80px;
+    padding: 0 10px;
+
+    position:absolute;
+    top:0;
+    left: 0;
+
     display: flex;
     justify-content:space-between;
-    padding: 0 10px;
+
+    box-shadow: inset 0px 22px 28px -7px rgba(0,0,0,0.52);
     transition: ease-in-out 0.3s;
 
     &:hover {
