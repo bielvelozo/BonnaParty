@@ -2,9 +2,10 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const FormSection = styled.div`
-	padding: 160px 0;
-	background-color: rgba(10, 10, 10, 0.25);
-	
+	width:100%;
+	position:absolute; 
+	top:30%;
+	z-index:999;
 `;
 
 export const FormTitle = styled.h1`
@@ -46,6 +47,7 @@ export const FormColumn = styled.div`
 	align-items: center;
 	border-radius: 20px;
 	flex-direction: column;
+	box-shadow: 10px 10px 20px black;
 	@media screen and (max-width: 768px) {
 		
 		flex-basis: 100%;
@@ -64,6 +66,7 @@ export const FormRow = styled.div`
 	margin: 0 -15px -15px -15px;
 	flex-wrap: wrap;
 	align-items: center;
+
 `;
 
 export const FormWrapper = styled.form`
