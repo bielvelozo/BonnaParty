@@ -23,8 +23,6 @@ const regioesSP = [
     "Registro e Região"
 ]
 
-console.log(regioesSP)
-
 function Filter() {
     const [age, setAge] = React.useState('');
 

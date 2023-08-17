@@ -2,9 +2,19 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const FormSection = styled.div`
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	background-color: rgba(0 , 0 , 0 , 0.4);
+
 	width:100%;
-	position:absolute; 
-	top:30%;
+	height:100%;
+
+	position:fixed; 
+	top:0;
+	right: 0;
+	bottom: 0;
+	left:0;
 	z-index:999;
 `;
 
@@ -47,7 +57,7 @@ export const FormColumn = styled.div`
 	align-items: center;
 	border-radius: 20px;
 	flex-direction: column;
-	box-shadow: 10px 10px 20px black;
+
 	@media screen and (max-width: 768px) {
 		
 		flex-basis: 100%;
