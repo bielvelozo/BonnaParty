@@ -28,11 +28,19 @@ function Header() {
 
     const [showLogin, setShowLogin] = useState(false)
     const [show, setShow] = useState(false)
+    const [avatar, setAvatar] = useState('')
+
 
 
     useEffect(() => {
         setShow(localStorage.getItem("id") > 0)
+        setAvatar(
+                localStorage.getItem("name") &&
+                 localStorage.getItem("name")[0]
+            )
     }, [])
+
+    
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -91,7 +99,7 @@ function Header() {
                         sx={{ ml: 2 }}
 
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+                        <Avatar sx={{ width: 32, height: 32 }}>{avatar && avatar}</Avatar>
                     </IconButton>
                 </Box>
 
