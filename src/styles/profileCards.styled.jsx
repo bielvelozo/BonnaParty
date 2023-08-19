@@ -66,12 +66,13 @@ export const UlCards = styled.ul`
     padding: 12px 0 0;
     `
 
-export const liCards = styled.li`
+export const LiCards = styled.li`
     height: auto!important;
     margin-bottom: 10px;
     border: none;
     line-height: normal;
     cursor: pointer!important;
+
     `
 
 export const IconLink = styled.i`

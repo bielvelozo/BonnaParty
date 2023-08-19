@@ -1,5 +1,5 @@
 import MyAccount from './MyAccount'
-import SavedEvents from './SavedEvents'
+import Cards from './Cards'
 import { Center, DivCards, UlCards, liCards } from '../../../styles/profileCards.styled'
 
 export default function ProfileCards() {
@@ -7,9 +7,7 @@ export default function ProfileCards() {
     <DivCards>
         <Center>
             <MyAccount/>
-            <UlCards>
-                <SavedEvents/>
-            </UlCards>    
+            <Cards/>
         </Center>
     </DivCards>
     )
