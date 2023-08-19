@@ -1,22 +1,28 @@
 'use client'
+import Header from '../../components/Profile/HeaderProfile'
+import ProfileCards from '../../components/Profile/Cards/ProfileCards'
 
 const profile = () => {
- 
-    const logout = () =>{
+
+    const logout = () => {
         localStorage.clear()
         location.replace(`/`);
     }
 
     return (
-        <div>
-            <ul>
-                <li>{localStorage.getItem('name')}</li>
-                <li>{localStorage.getItem('email')}</li>
-            </ul>
+        <>
+            <Header />
+            <ProfileCards/>
+            {/* <div>
+                <ul>
+                    <li>{localStorage.getItem('name')}</li>
+                    <li>{localStorage.getItem('email')}</li>
+                </ul>
 
-            <button onClick={() => logout()}>Logout</button>
-        </div>
-    ) 
+                <button onClick={() => logout()}>Logout</button>
+            </div> */}
+        </>
+    )
 }
 
 export default profile
