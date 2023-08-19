@@ -3,25 +3,19 @@
 import {
     ImageDiv,
     StyledHeader,
-    StyledLi,
-    StyledNav
-} from './header.style.jsx'
+} from '../../styles/header.style.jsx'
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link'
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SearchIcon from '@mui/icons-material/Search';
 import Avatar from '@mui/material/Avatar';
 
 import Image from "next/image"
-import FormUser from '../FormUser/FormUser'
+import FormUser from '../FormUser/FormUser.jsx'
 import { useState, useEffect } from "react"
 import { MenuItem } from '@mui/material';
-import zIndex from '@mui/material/styles/zIndex.js';
-import { white } from '@mui/material/colors';
-import { withTheme } from 'styled-components';
+
 
 
 function Header() {
@@ -36,7 +30,7 @@ function Header() {
         setShow(localStorage.getItem("id") > 0)
         setAvatar(
                 localStorage.getItem("name") &&
-                 localStorage.getItem("name")[0]
+                localStorage.getItem("name")[0]
             )
     }, [])
 
