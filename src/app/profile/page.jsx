@@ -13,8 +13,7 @@ const profile = () => {
  
     return (
         <>
-            <Header />
-            <ProfileCards/>
+            <div>Bem vindo</div>
             {/* <div>
                 <ul>
                     <li>{localStorage.getItem('name')}</li>
