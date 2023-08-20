@@ -19,6 +19,8 @@ export const Center = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 15px;
+    position:relative;
+    
 `
 
 export const TitleCard = styled.div`
@@ -89,8 +91,24 @@ export const IconLink = styled.i`
     border-right: solid 1px #e5e5e5;
 `
 
-export const ContentProfile = styled.div`
+export const Content = styled.div`
     width: 100%;
     max-width: 70%;
     float: right;
+    `
+
+export const Line = styled.div`
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 20px;
+    color: #000;
+    margin-bottom: 1.4em;
+    border-bottom: 1px solid #d9d9d9;
+    position: relative;
+`
+
+export const LineTitle = styled.h3`
+    padding: 0;
+    font-size: 1.375rem;
+    font-weight: 700;
 `

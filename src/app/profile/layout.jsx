@@ -13,8 +13,8 @@ export default function RootLayout({ children }) {
             <DivCards>
                 <Center>
 
-                    <ProfileCards />
                     {children}
+                    <ProfileCards />
                 </Center>
             </DivCards>
         </>

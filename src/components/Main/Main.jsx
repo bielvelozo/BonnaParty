@@ -14,7 +14,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { MainContainer, CardDiv } from './Main.styled'
+import { MainContainer, CardDiv } from '../../styles/Main.styled'
 
 
 const events = [
