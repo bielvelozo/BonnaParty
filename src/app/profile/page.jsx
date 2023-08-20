@@ -1,14 +1,16 @@
 'use client'
 import Header from '../../components/Profile/HeaderProfile'
 import ProfileCards from '../../components/Profile/Cards/ProfileCards'
+import { useContext } from 'react'
 
 const profile = () => {
 
-    const logout = () => {
-        localStorage.clear()
-        location.replace(`/`);
-    }
+    // const logout = () => {
+    //     localStorage.clear()
+    //     location.replace(`/`);
+    // }
 
+ 
     return (
         <>
             <Header />

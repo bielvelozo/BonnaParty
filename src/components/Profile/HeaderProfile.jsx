@@ -21,7 +21,6 @@ export default function HeaderProfile() {
                         margin: '0 auto'
                     }}
 
-
                 />
             </ImageDiv>
         </SympleStyledHeader>
