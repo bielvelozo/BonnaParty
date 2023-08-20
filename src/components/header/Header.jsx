@@ -34,7 +34,7 @@ function Header() {
             )
     }, [])
 
-    
+
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -46,7 +46,7 @@ function Header() {
 
     const handleProfile = (e) => {
         e.preventDefault();
-
+        location.replace('/profile')
         return false;
     }
 
