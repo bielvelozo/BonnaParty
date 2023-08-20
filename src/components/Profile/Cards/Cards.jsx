@@ -1,13 +1,13 @@
 'use client'
 
 import * as React from 'react';
-import { Card, IconLink, LiCards, UlCards } from '../../../styles/profileCards.styled';
+import { Card, IconLink, LiCards, UlCards } from '../../../styles/profileCards.style';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LogoutIcon from '@mui/icons-material/Logout';
 import KeyIcon from '@mui/icons-material/Key';
-import { useReducer, createContext, useState } from 'react';
-import { useContext } from 'react'
+import { useReducer} from 'react';
+
 
 
 
@@ -17,7 +17,7 @@ function reducer(state, action) {
     switch (action.type) {
         case 'select':
             return {
-                like: action.card === 'like' ? !state.like : false,
+                saved: action.card === 'saved' ? !state.saved : false,
                 email: action.card === 'email' ? !state.email : false,
                 pass: action.card === 'pass' ? !state.pass : false,
                 logout: action.card === 'logout' ? !state.logout : false
@@ -28,7 +28,7 @@ function reducer(state, action) {
 }
 
 const initialState = {
-    like: false,
+    saved: false,
     email: false,
     pass: false,
     logout: false
@@ -49,9 +49,10 @@ export default function Myacc() {
             <LiCards>
                 <Card
                     onClick={() => {
-                        dispatch({ type: 'select', card: 'like' })
+                        dispatch({ type: 'select', card: 'saved' })
                     }}
-                    color={state.like ? '#102133' : ''}
+                    color={state.saved ? '#102133' : ''}
+                    href='profile/SavedEvents'
                 >
                     Eventos Curtidos
                     <IconLink>

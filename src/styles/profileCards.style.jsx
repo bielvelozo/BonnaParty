@@ -88,3 +88,9 @@ export const IconLink = styled.i`
     padding: 25px;
     border-right: solid 1px #e5e5e5;
 `
+
+export const ContentProfile = styled.div`
+    width: 100%;
+    max-width: 70%;
+    float: right;
+`

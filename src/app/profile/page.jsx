@@ -1,7 +1,6 @@
 'use client'
-import Header from '../../components/Profile/HeaderProfile'
-import ProfileCards from '../../components/Profile/Cards/ProfileCards'
-import { useContext } from 'react'
+
+
 
 const profile = () => {
 
@@ -13,7 +12,7 @@ const profile = () => {
  
     return (
         <>
-            <div>Bem vindo</div>
+
             {/* <div>
                 <ul>
                     <li>{localStorage.getItem('name')}</li>

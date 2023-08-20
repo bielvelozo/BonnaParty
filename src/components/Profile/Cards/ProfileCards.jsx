@@ -1,14 +1,12 @@
 import MyAccount from './MyAccount'
 import Cards from './Cards'
-import { Center, DivCards } from '../../../styles/profileCards.styled'
+import { Center, DivCards } from '../../../styles/profileCards.style'
 export default function ProfileCards() {
 
     return(
-    <DivCards>
-        <Center>
+        <>
             <MyAccount/>
             <Cards/>
-        </Center>
-    </DivCards>
+        </>
     )
 }

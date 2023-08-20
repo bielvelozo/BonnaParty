@@ -1,11 +1,11 @@
+'use client'
+
 import {
     ImageDiv,
     SympleStyledHeader,
-} from '../../styles/header.style.jsx'
+} from '@/styles/header.style.jsx'
 import Image from 'next/image.js'
 import Link from 'next/link.js'
-import { Typography } from '@mui/material'
-
 
 export default function HeaderProfile() {
     return (
