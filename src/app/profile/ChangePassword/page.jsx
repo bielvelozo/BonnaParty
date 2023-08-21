@@ -2,11 +2,8 @@
 
 import SavedEvents from "@/components/Profile/SavedEvents";
 
-if(location.storage) {
-    location.replace('/')
-}
 
-export default function Events() {
+export default function Pass() {
     return(
         <SavedEvents></SavedEvents>
     )

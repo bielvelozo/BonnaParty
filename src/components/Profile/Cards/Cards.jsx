@@ -6,7 +6,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LogoutIcon from '@mui/icons-material/Logout';
 import KeyIcon from '@mui/icons-material/Key';
-import { useReducer} from 'react';
+import { useReducer } from 'react';
+import  Link  from 'next/link'
 
 
 
@@ -52,7 +53,9 @@ export default function Myacc() {
                         dispatch({ type: 'select', card: 'saved' })
                     }}
                     color={state.saved ? '#102133' : ''}
-                    href='profile/SavedEvents'
+                    href='SavedEvents'
+
+
                 >
                     Eventos Curtidos
                     <IconLink>
@@ -61,19 +64,19 @@ export default function Myacc() {
                 </Card>
             </LiCards>
             <LiCards>
-                <Card
-                    onClick={() => {
-                        dispatch({ type: 'select', card: 'email' })
+                    <Card
+                        href='ChangeEmail'
+                        onClick={() => {
+                            dispatch({ type: 'select', card: 'email' })
 
-                    }}
-                    color={state.email ? '#102133' : ''}
-                    href='profile/ChangeEmail'
-                >
-                    Alterar Email
-                    <IconLink>
-                        <AlternateEmailIcon fontSize='medium' />
-                    </IconLink>
-                </Card>
+                        }}
+                        color={state.email ? '#102133' : ''}
+                    >
+                        Alterar Email
+                        <IconLink>
+                            <AlternateEmailIcon fontSize='medium' />
+                        </IconLink>
+                    </Card>
             </LiCards>
             <LiCards>
                 <Card
@@ -82,6 +85,7 @@ export default function Myacc() {
 
                     }}
                     color={state.pass ? '#102133' : ''}
+                    href='ChangePassword'
                 >
                     Alterar Senha
                     <IconLink>
@@ -93,9 +97,10 @@ export default function Myacc() {
                 <Card
                     onClick={() => {
                         dispatch({ type: 'select', card: 'logout' })
-
+                        localStorage.clear()
                     }}
                     color={state.logout ? '#102133' : ''}
+                    href='/'
                 >
                     Sair
                     <IconLink>

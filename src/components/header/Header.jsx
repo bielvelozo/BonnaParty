@@ -46,7 +46,7 @@ function Header() {
 
     const handleProfile = (e) => {
         e.preventDefault();
-        location.replace('/profile')
+        location.replace('/profile/SavedEvents')
         return false;
     }
 

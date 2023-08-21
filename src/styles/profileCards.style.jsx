@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from 'next/link'
 
 export const DivCards = styled.div`
     background: #fff;
@@ -40,7 +41,7 @@ export const TitleCard = styled.div`
     text-align: left;
 `
 
-export const Card = styled.a`
+export const Card = styled(Link)`
     display: flex;
     position: relative;
     padding: 15px 10px 15px 60px;
