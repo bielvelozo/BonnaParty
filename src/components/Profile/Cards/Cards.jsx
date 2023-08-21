@@ -67,6 +67,7 @@ export default function Myacc() {
 
                     }}
                     color={state.email ? '#102133' : ''}
+                    href='profile/ChangeEmail'
                 >
                     Alterar Email
                     <IconLink>
