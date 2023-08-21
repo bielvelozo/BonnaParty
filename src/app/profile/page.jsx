@@ -4,11 +4,6 @@
 
 const profile = () => {
 
-    // const logout = () => {
-    //     localStorage.clear()
-    //     location.replace(`/`);
-    // }
-
  
     return (
         <>

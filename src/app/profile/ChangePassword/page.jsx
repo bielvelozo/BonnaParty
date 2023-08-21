@@ -1,11 +1,11 @@
 'use client'
 
-import SavedEvents from "@/components/Profile/SavedEvents";
+import ChangePassword from '@/components/Profile/ChangePassword'
 
 
 export default function Pass() {
     return(
-        <SavedEvents></SavedEvents>
+        <ChangePassword/>
     )
 }
 
