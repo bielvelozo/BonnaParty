@@ -35,3 +35,31 @@ export const StyledLabel = styled.div`
     width: 100%;
 
 `
+
+export const StyledSubmit = styled.button`
+    width: 48%;
+    max-width: 250px;
+    min-width: 100px;
+    height: 40px;
+
+    font-size: 15px;
+    line-height: 40px;
+    text-align: center;
+    border: 0;
+
+    float:right;
+    text-decoration: none;
+    text-transform: uppercase;
+    box-shadow: none;
+
+    color: #fff;
+    background: #000;
+    cursor:pointer;
+
+    margin: 15px 0;
+    padding: 0 15px;
+
+    &:hover {
+        background: #141414;
+    }
+`

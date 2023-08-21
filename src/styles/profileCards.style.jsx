@@ -16,6 +16,7 @@ export const DivCards = styled.div`
 export const Center = styled.div`
     float: none;
     display: block;
+    min-height: 700px;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
