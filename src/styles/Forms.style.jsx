@@ -36,6 +36,7 @@ export const StyledLabel = styled.div`
 
 `
 
+
 export const StyledSubmit = styled.button`
     width: 48%;
     max-width: 250px;
@@ -62,4 +63,12 @@ export const StyledSubmit = styled.button`
     &:hover {
         background: #141414;
     }
+`
+
+export const StyledMessage = styled.span`
+    color: red;
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+    float: left;
 `

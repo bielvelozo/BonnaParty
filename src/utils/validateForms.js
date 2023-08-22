@@ -3,7 +3,9 @@ export const createUserFormSchema = z.object({
     name: z.string()
         .nonempty('O nome é obrigatório ')
         .min(3, 'O nome de usuário precisa ter no mínimo 3 caracteres')
+        .regex(/^[A-Za-z]+$/i, "Apenas letras são permitidas")
         .optional()
+
     ,
     email: z.string()
         .nonempty('O e-mail é obrigatório ')
@@ -15,7 +17,43 @@ export const createUserFormSchema = z.object({
     ,
 })
 
- export const verify = ( errors ,status ) => {
+export const changeEmailFormSchema = z.object({
+
+    email: z.string()
+        .nonempty('O e-mail é obrigatório ')
+        .email('Formato de e-mail inválido')
+    ,
+    confirm_email: z.string()
+        .nonempty('A confirmação é obrigatória ')
+        .email('Formato de e-mail inválido')
+
+})
+
+    .refine(({ email, confirm_email }) => email === confirm_email, {
+        message: "Os email devem ser iguais",
+        path: ['confirm_email']
+    })
+
+
+export const changePasswordFormSchema = z.object({
+
+    password: z.string()
+        .nonempty('Informe a nova senha')
+        .min(6, 'A senha deve ter no mínimo 6 caracteres')
+
+    ,
+    confirm_password: z.string()
+        .nonempty('Informe a confimação da senha')
+
+})
+
+    .refine(({ password, confirm_password }) => password === confirm_password, {
+        message: "As senhas digitadas devem ser idênticas.",
+        path: ['confirm_password']
+    })
+
+
+export const verify = (errors, status) => {
     let test = false
 
     if (Object.keys(errors).length !== 0 || status !== '') {

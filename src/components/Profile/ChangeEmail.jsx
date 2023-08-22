@@ -1,15 +1,34 @@
 'use client'
 
 import { Content, Line, LineTitle } from "@/styles/profileCards.style"
-import { StyledInputDiv, StyledInput, StyledLabel, StyledSubmit } from '@/styles/Forms.style'
+import {
+    StyledInputDiv,
+    StyledInput,
+    StyledLabel,
+    StyledSubmit,
+    StyledMessage
+} from '@/styles/Forms.style'
+
 import { useEffect, useState } from "react"
+import { useForm } from 'react-hook-form'
+import { changeEmailFormSchema, err, verify } from '@/utils/validateForms';
+import { zodResolver } from '@hookform/resolvers/zod'
+
 
 export default function ChangeEmail() {
     const [localEmail, setLocalEmail] = useState('')
+    const [status, setStatus] = useState('')
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({ resolver: zodResolver(changeEmailFormSchema) })
+
     useEffect(() => {
         setLocalEmail(localStorage.getItem('email'))
     }, [])
-    console.log(localEmail)
+
     return (
         <Content>
             <Line>
@@ -18,31 +37,44 @@ export default function ChangeEmail() {
                 </LineTitle>
             </Line>
 
-            <StyledInputDiv float='initial'>
-                <StyledLabel>Novo Email</StyledLabel>
-                <StyledInput
-                    type='email'
-                    readOnly
-                    value={localEmail}
-                />
-            </StyledInputDiv>
-            <StyledInputDiv >
-                <StyledLabel>Email Atual</StyledLabel>
-                <StyledInput
-                    type='email'
-                />
+            <form onSubmit={handleSubmit()}>
+                <StyledInputDiv float='initial'>
+                    <StyledLabel>Email Atual</StyledLabel>
+                    <StyledInput
+                        type='email'
+                        readOnly
+                        value={localEmail}
+                    />
+                </StyledInputDiv>
+                <StyledInputDiv >
+                    <StyledLabel>Novo Email</StyledLabel>
+                    <StyledInput
+                        {...register('email')}
+                        type='email'
+                    />
 
-            </StyledInputDiv>
-            <StyledInputDiv float='right'>
-                <StyledLabel>
-                    Confirmação do Novo E-mail
-                </StyledLabel>
-                <StyledInput
-                    type='email'
-                />
+                </StyledInputDiv>
+                <StyledInputDiv float='right'>
+                    <StyledLabel>
+                        Confirmação do Novo E-mail
+                    </StyledLabel>
 
-            </StyledInputDiv>
-            <StyledSubmit>GRAVAR NOVO EMAIL</StyledSubmit>
+                    <StyledInput
+                        {...register('confirm_email')}
+                        type='email'
+                    />
+
+                </StyledInputDiv>
+                
+                <StyledSubmit type='submit' >GRAVAR NOVO EMAIL</StyledSubmit>
+
+                {verify(errors, status) &&
+                    <StyledMessage>
+                        {err(errors)}
+                        {status}
+                    </StyledMessage>
+                }
+            </form>
         </Content>
     )
 }
