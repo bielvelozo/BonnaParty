@@ -9,40 +9,20 @@ import {
     FormButton,
 } from './FormStyles';
 
+
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import {createUserFormSchema , verify ,err , messageVariants} from '@/utils/validateForms'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from "react"
 
 
 
-const createUserFormSchema = z.object({
-    name: z.string()
-        .nonempty('O nome é obrigatório ')
-        .min(3, 'O nome de usuário precisa ter no mínimo 3 caracteres')
-    ,
-    email: z.string()
-        .nonempty('O e-mail é obrigatório ')
-        .email('Formato de e-mail inválido')
-    ,
-    password: z.string()
-        .min(6, 'A senha precisa ter no mínimo 6 caracteres')
-    ,
-})
 
 export default function register() {
     const [status, setStatus] = useState('')
 
 
-    const verify = () => {
-        let test = false
 
-        if (Object.keys(errors).length !== 0 || status !== '') {
-            test = true
-        }
-
-        return test
-    }
 
     const {
         register,
@@ -63,21 +43,8 @@ export default function register() {
 
     }
 
-    const err = () => {
-        const msg = []
-        for (let i in errors) {
-            msg.push(errors[i].message)
-        }
-
-        return msg[0]
-    }
 
 
-
-    const messageVariants = {
-        hidden: { y: 30, opacity: 0 },
-        animate: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.4 } },
-    };
 
 
     return (
@@ -102,12 +69,12 @@ export default function register() {
             </FormWrapper>
 
 
-            {verify() &&
+            {verify(errors , status) &&
                 <FormMessage
                     variants={messageVariants}
                     initial='hidden'
                     animate='animate'>
-                    {err()}
+                    {err(errors)}
                     {status}
                 </FormMessage>
             }
