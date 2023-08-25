@@ -40,9 +40,7 @@ switch($method) {
                      $email_err = "Este email já está em uso.";
                      $response = ['status' => 0, 'message' => $email_err];
                      echo json_encode($response);
-                 } else{
-                     
-                 }
+                 } 
              } else{
                  echo "Ops! Algo deu errado. Por favor, tente novamente mais tarde.";
              }

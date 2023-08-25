@@ -26,6 +26,8 @@ export const changeEmailFormSchema = z.object({
     confirm_email: z.string()
         .nonempty('A confirmação é obrigatória ')
         .email('Formato de e-mail inválido')
+    ,
+    
 
 })
 
@@ -45,6 +47,8 @@ export const changePasswordFormSchema = z.object({
     confirm_password: z.string()
         .nonempty('Informe a confimação da senha')
 
+    ,
+    
 })
 
     .refine(({ password, confirm_password }) => password === confirm_password, {

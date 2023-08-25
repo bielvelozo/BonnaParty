@@ -17,6 +17,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 
 export default function ChangeEmail() {
     const [localEmail, setLocalEmail] = useState('')
+    const [localID, setLocalID] = useState('')
     const [status, setStatus] = useState('')
 
     const {
@@ -27,7 +28,34 @@ export default function ChangeEmail() {
 
     useEffect(() => {
         setLocalEmail(localStorage.getItem('email'))
+        setLocalID(localStorage.getItem('id'))
     }, [])
+
+
+ async function sendEmail(data) {
+        data = {...data ,id: localID}
+        console.log(data)
+        await fetch("http://localhost/bonna_party/src/api/changeEmail.php", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { "Content-type": "application/json; charset=UTF-8" }
+
+        })
+            .then(response => response.json())
+            .then(json => {
+                setStatus(json.message)
+                if(json.status === 1 ) {
+                    localStorage.setItem('email', json.email)
+    
+                    location.reload()
+                    console.log(json)
+                }
+            })
+            .catch(err => setStatus(err))
+
+
+    }
+
 
     return (
         <Content>
@@ -37,7 +65,7 @@ export default function ChangeEmail() {
                 </LineTitle>
             </Line>
 
-            <form onSubmit={handleSubmit()}>
+            <form onSubmit={handleSubmit(sendEmail)}>
                 <StyledInputDiv float='initial'>
                     <StyledLabel>Email Atual</StyledLabel>
                     <StyledInput
@@ -73,7 +101,7 @@ export default function ChangeEmail() {
                         {err(errors)}
                         {status}
                     </StyledMessage>
-                }
+                } 
             </form>
         </Content>
     )
