@@ -5,7 +5,7 @@ export const FormSection = styled.div`
 	display:flex;
 	align-items:center;
 	justify-content:center;
-	background-color: rgba(0 , 0 , 0 , 0.5);
+	/* background-color: rgba(0 , 0 , 0 , 0.5); */
 
 	width:100%;
 	height:100%;
@@ -64,7 +64,8 @@ export const FormColumn = styled.div`
 	/* margin-bottom: 15px; */
 	padding: 50px;
 	background: white;
-	border: 20px;
+	
+	border: 1px solid #000;
 	/* padding: ${({ small }) => (small ? '0 50px' : '0 15px')}; */
 	flex: 1;
 	max-width: 50%;

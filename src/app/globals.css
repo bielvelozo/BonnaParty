@@ -7,3 +7,8 @@
 body {
     background-color: #cecece;
 }
+
+a{
+    color: inherit;
+    text-decoration:none;
+}

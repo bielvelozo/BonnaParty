@@ -15,6 +15,7 @@ import Image from "next/image"
 import FormUser from '../FormUser/FormUser.jsx'
 import { useState, useEffect } from "react"
 import { MenuItem } from '@mui/material';
+import Link from 'next/link.js';
 
 
 
@@ -23,7 +24,7 @@ function Header() {
     const [showLogin, setShowLogin] = useState(false)
     const [show, setShow] = useState(false)
     const [avatar, setAvatar] = useState('')
-
+    
 
 
     useEffect(() => {
@@ -61,7 +62,7 @@ function Header() {
                     zIndex: '10'
                 }}>
                     <MenuItem>Explorar Eventos</MenuItem>
-                    <MenuItem>Cadastrar Eventos</MenuItem>
+                    <MenuItem><Link href={'/Cadastrar-Evento'}>Cadastrar Eventos</Link></MenuItem>
                     <MenuItem>Central de Ajuda</MenuItem>
                 </Box>
 
@@ -100,7 +101,9 @@ function Header() {
 
             </StyledHeader>
 
-            {showLogin && <FormUser />}
+            {showLogin && 
+             <FormUser show={showLogin} set={setShowLogin}/>
+            }
 
         </>
     )
