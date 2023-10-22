@@ -3,6 +3,10 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-headers: *");
 header('Content-Type: application/json');
 
+include 'DbConnect.php';
+$objDb = new DbConnect;
+$conn = $objDb->connect();
+
 $response = array();
 
 
@@ -49,6 +53,20 @@ if($_FILES['image']) {
   }
 
 
+
+} else {
+  $temptData = file_get_contents('php://input');
+  $tempt = json_decode($temptData);
+
+
+  if ($tempt === null && json_last_error() !== JSON_ERROR_NONE) {
+      $response = ['status' => 0, 'message' => 'Invalid JSON data'];
+      echo json_encode($response);
+   
+  }
+    
+  
+  // $response = $image;
 
 }
 

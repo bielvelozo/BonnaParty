@@ -11,16 +11,16 @@ import {
 
 
 import { useForm } from 'react-hook-form'
-import {createUserFormSchema , verify ,err , messageVariants} from '@/utils/validateForms'
+import { verify ,err , messageVariants, createEventFormSchema, createUserFormSchema} from '@/utils/validateForms'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 
 
 export default function register() {
     const [status, setStatus] = useState('')
-
+   
 
 
 
@@ -28,18 +28,18 @@ export default function register() {
         register,
         handleSubmit,
         formState: { errors }
-    } = useForm({ resolver: zodResolver(createUserFormSchema) })
+    } = useForm({ resolver: zodResolver(createEventFormSchema) })
 
-    async function createUser(data) {
+    async function createEvent(data) {
 
-        await fetch("http://localhost/bonna_party/src/api/register.php", {
+        await fetch("http://localhost/bonna_party/src/api/upload.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { "Content-type": "application/json; charset=UTF-8" }
         })
             .then(response => response.json())
-            .then(json => setStatus(json.message))
-            .catch(err => setStatus(err))
+            .then(json => console.log(json.message))
+            .catch(err => console.log(err))
 
     }
 
@@ -51,26 +51,58 @@ export default function register() {
 
         <>
 
-            <FormWrapper onSubmit={handleSubmit(createUser)}>
+            <FormWrapper onSubmit={handleSubmit(createEvent)}>
                 <FormInputRow>
                     <FormLabel>Nome do Evento</FormLabel>
+                    <FormInput type="text" {...register('name')} />
+                </FormInputRow>
+                <FormInputRow>
+                    <FormLabel>Descrição</FormLabel>
+                    <textarea type="text" {...register('description')} />
+                </FormInputRow>
+                <FormInputRow>
+                    <FormLabel>Estado</FormLabel>
+                    <FormInput type="text"{...register('estate')} />
+                </FormInputRow>
+                <FormInputRow>
+                    <FormLabel>Cidade</FormLabel>
+                    <FormInput type="text"{...register('city')} />
+                </FormInputRow>
+                <FormInputRow>
+                    <FormLabel>Endereço</FormLabel>
+                    <FormInput type="text"{...register('address')} />
+                </FormInputRow>
+                <FormInputRow>
+                    <FormLabel>Data e Horário</FormLabel>
+                    <FormInput type="datetime-local"{...register('dateAndHour')} />
+                </FormInputRow>
+                <FormInputRow>
+                    <FormLabel>Contato</FormLabel>
+                    <FormInput type='number' {...register('mobile')} />
+                </FormInputRow>
+                {/* <FormInputRow>
+                    <FormLabel>Imagem do Evento</FormLabel>
+                    <FormInput type="file"{...register('image')} />
+                </FormInputRow> */}
+                <FormButton type='submit'>Cadastrar Evento</FormButton>
+            </FormWrapper>
+
+            {/* <FormWrapper onSubmit={handleSubmit(createEvent)}>
+                <FormInputRow>
+                    <FormLabel>Nome de Evento</FormLabel>
                     <FormInput type="name" {...register('name')} />
                 </FormInputRow>
                 <FormInputRow>
-                    <FormLabel>Local</FormLabel>
+                    <FormLabel>Email</FormLabel>
                     <FormInput type="email"{...register('email')} />
                 </FormInputRow>
                 <FormInputRow>
-                    <FormLabel>Data</FormLabel>
-                    <FormInput type="password"{...register('password')} />
-                </FormInputRow>
-                <FormInputRow>
-                    <FormLabel>Horário</FormLabel>
+                    <FormLabel>Senha</FormLabel>
                     <FormInput type="password"{...register('password')} />
                 </FormInputRow>
 
                 <FormButton type='submit'>Cadastrar</FormButton>
-            </FormWrapper>
+            </FormWrapper> */}
 
 
             {verify(errors , status) &&

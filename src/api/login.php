@@ -58,6 +58,11 @@ switch ($method) {
             echo json_encode($response , JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         }
+        else {
+            $response = ['status'=> 0,'message'=> 'invalid input'];
+            echo json_encode($response , JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        }
 
 
 

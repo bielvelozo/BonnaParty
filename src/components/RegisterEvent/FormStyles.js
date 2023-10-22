@@ -10,29 +10,9 @@ export const FormSection = styled.div`
 	width:100%;
 	height:100%;
 
-	position:fixed; 
-	top:0;
-	right: 0;
-	bottom: 0;
-	left:0;
-	z-index:999;
+
 `;
 
-export const CLoseButton = styled.button `
-	position: absolute;
-	background-color: transparent;
-    border: none;
-    top: -47px;
-    right: 163px;
-    z-index: 1000;
-    color: #ffffff;
-	
-
-	&:hover {
-		color: #9c27b0
-	}
-
-`
 
 export const FormTitle = styled.h1`
 	margin-bottom: 24px;
@@ -101,6 +81,10 @@ export const FormWrapper = styled.form`
 	/* max-width: 540px; */
 	padding-top: 0;
 	width: 100%;
+	display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* gap: 1rem; */
+    column-gap: 2rem;
 `;
 
 export const FormMessage = styled(motion.div)`
