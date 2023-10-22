@@ -31,14 +31,17 @@ export default function register() {
     } = useForm({ resolver: zodResolver(createEventFormSchema) })
 
     async function createEvent(data) {
+        const formData = new FormData()
+        formData.append('image' , data.image[0])
 
+        console.log(data)
         await fetch("http://localhost/bonna_party/src/api/upload.php", {
             method: 'POST',
-            body: JSON.stringify(data),
-            headers: { "Content-type": "application/json; charset=UTF-8" }
+            body: formData,
+            headers: { "enctype": "multipart/form-data" }
         })
-            .then(response => response.json())
-            .then(json => console.log(json.message))
+            .then(response => console.log(response))
+            // .then(json => console.log(json.message))
             .catch(err => console.log(err))
 
     }
@@ -62,7 +65,7 @@ export default function register() {
                 </FormInputRow>
                 <FormInputRow>
                     <FormLabel>Estado</FormLabel>
-                    <FormInput type="text"{...register('estate')} />
+                    <FormInput type="text"{...register('state')} />
                 </FormInputRow>
                 <FormInputRow>
                     <FormLabel>Cidade</FormLabel>
@@ -80,10 +83,10 @@ export default function register() {
                     <FormLabel>Contato</FormLabel>
                     <FormInput type='number' {...register('mobile')} />
                 </FormInputRow>
-                {/* <FormInputRow>
+                <FormInputRow>
                     <FormLabel>Imagem do Evento</FormLabel>
-                    <FormInput type="file"{...register('image')} />
-                </FormInputRow> */}
+                    <FormInput type="file" {...register('image')}  />
+                </FormInputRow>
                 <FormButton type='submit'>Cadastrar Evento</FormButton>
             </FormWrapper>
 

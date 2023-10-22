@@ -76,7 +76,7 @@ export const createEventFormSchema = z.object({
     .string()
     .max(50 , "A descriçao deve ter no máximo 50 letras"),
 
-    estate: z
+    state: z
     .string()
     .nonempty("O estado é obrigatório "),
 
@@ -97,8 +97,8 @@ export const createEventFormSchema = z.object({
     .nonempty("O número para contato é obrigatório"),
     
     // .("O número para contato é obrigatório"),
-    // image: z
-    // .any()
+    image: z
+    .any()
 
 });
 
