@@ -42,7 +42,7 @@ export default function login() {
                 localStorage.setItem('name', json.name,)
                 localStorage.setItem('id', json.id,)
                 localStorage.setItem('email', json.email,)
-
+                document.cookie =`id=${json.id}`
                 location.reload()
             })
             .catch(err => setStatus(err))

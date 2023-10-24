@@ -7,9 +7,13 @@ include 'DbConnect.php';
 $objDb = new DbConnect;
 $conn = $objDb->connect();
 
+// session_start();
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+
+
 
 $method = $_SERVER['REQUEST_METHOD'];
-
 
 switch ($method) {
 
@@ -35,11 +39,16 @@ switch ($method) {
 
                 if ($stmt->rowCount() == 1) {
                     
+                    
                     $users = $stmt->fetch();
                     $hashed_password = $users["password"];
-
+                    
                     if (password_verify($password, $hashed_password)) {
                         echo json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+                        // $userID = $users["id"];
+                        
+                        // $_SESSION["id"] = $users["id"];
 
                         break;
                     } else {
@@ -55,12 +64,11 @@ switch ($method) {
 
             }
 
-            echo json_encode($response , JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-        }
-        else {
-            $response = ['status'=> 0,'message'=> 'invalid input'];
-            echo json_encode($response , JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        } else {
+            $response = ['status' => 0, 'message' => 'invalid input'];
+            echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
         }
 
