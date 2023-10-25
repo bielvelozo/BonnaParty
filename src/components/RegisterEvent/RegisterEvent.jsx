@@ -34,16 +34,18 @@ export default function register() {
     formData.append("image", data.image[0]);
 
     
-    const idData = {...data , userID: localStorage.getItem("id")}
+    const idData = {...data , userID: localStorage.getItem("id"), image:data.image[0].name}
     console.log(idData);
-    // await fetch("http://localhost/bonna_party/src/api/upload.php", {
-    //   method: "POST",
-    //   body: formData,
-    //   headers: { enctype: "multipart/form-data" },
-    // })
-    //   .then((response) => console.log(response))
-    //   // .then(json => console.log(json.message))
-    //   .catch((err) => console.log(err));
+    
+    //upload image
+    await fetch("http://localhost/bonna_party/src/api/upload.php", {
+      method: "POST",
+      body: formData,
+      headers: { enctype: "multipart/form-data" },
+    })
+      .then((response) => console.log(response))
+      // .then(json => console.log(json.message))
+      .catch((err) => console.log(err));
 
       //Cadastar evento
 
@@ -52,9 +54,9 @@ export default function register() {
       body: JSON.stringify(idData),
       headers: { "Content-type": "application/json; charset=UTF-8" },
     })
-      .then((response) => console.log(response))
-    //   .then((json) => setStatus(json.message))
-    //   .catch((err) => setStatus(err));
+      .then((response) => response.json())
+      .then((json) => setStatus(json.message))
+      .catch((err) => setStatus(err));
   }
 
   return (

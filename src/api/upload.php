@@ -16,25 +16,6 @@ switch ($method) {
 
     case "POST":
 
-        // $temptData = file_get_contents('php://input');
-        // $tempt = json_decode($temptData);
-
-
-        // if ($tempt === null && json_last_error() !== JSON_ERROR_NONE) {
-        //     $response = ['status' => 0, 'message' => 'Invalid JSON data'];
-        //     echo json_encode($response);
-        //     break;
-        // }
-        // if (isset($tempt->image)) {
-        //     $image = $tempt->image;
-        //     $_FILES['image'];
-
-
-        //      echo 'chegamos aqui';
-        //      echo json_encode($image);
-
-        // }
-        var_dump($_FILES['image']);
         if (isset($_FILES['image'])) {
 
 

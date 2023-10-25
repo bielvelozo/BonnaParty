@@ -74,7 +74,7 @@ export const createEventFormSchema = z.object({
 
   description: z
     .string()
-    .max(50 , "A descriçao deve ter no máximo 50 letras"),
+    .max(200 , "A descriçao deve ter no máximo 50 letras"),
 
     state: z
     .string()

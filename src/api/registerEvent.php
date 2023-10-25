@@ -8,9 +8,6 @@ $objDb = new DbConnect;
 $conn = $objDb->connect();
 
 
-
-
-
 $method = $_SERVER['REQUEST_METHOD'];
 
 
@@ -31,28 +28,31 @@ switch ($method) {
 
         } else {
 
-            echo 'deu bom';
+            // echo 'deu bom';
 
-            var_dump($event->userID);
+            $sql = "INSERT INTO events (name, description, state , city, address, mobile, image_path, user_id) 
+                    VALUES(:name, :description, :state , :city, :address, :mobile, :image_path, :user_id)";
+            $stmt = $conn->prepare($sql);
 
-            // $sql = "INSERT INTO register (name, email, password) VALUES(:name, :email, :password)";
-            // $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':name', $event->name);
+            $stmt->bindParam(':description', $event->description);
+            $stmt->bindParam(':state', $event->state);
+            $stmt->bindParam(':city', $event->city);
+            $stmt->bindParam(':address', $event->address);
+            $stmt->bindParam(':mobile', $event->mobile);
+            $stmt->bindParam(':image_path', $event->image);
+            $stmt->bindParam(':user_id', $event->userID);
 
-            // $stmt->bindParam(':name', $user->name);
-            // $stmt->bindParam(':email', $user->email);
-            // $stmt->bindParam(':password', $hash);
 
+            if ($stmt->execute()) {
+                $response = ['status' => 1, 'message' => 'Evento criado com sucesso'];
+            } else {
+                $response = ['status' => 0, 'message' => 'Falha ou criar evento'];
 
+            }
+            echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
-            // if ($stmt->execute()) {
-            //     $response = ['status' => 1, 'message' => 'Conta criada com sucesso'];
-            // } else {
-            //     $response = ['status' => 0, 'message' => 'Falha ou criar conta'];
-
-            // }
-            // echo json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-            // break;
+            break;
 
         }
 
