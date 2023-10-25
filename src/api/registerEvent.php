@@ -8,11 +8,22 @@ $objDb = new DbConnect;
 $conn = $objDb->connect();
 
 
+
 $method = $_SERVER['REQUEST_METHOD'];
 
 
 switch ($method) {
 
+
+    case "GET":
+        $sql = "SELECT * FROM events";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  
+        echo json_encode($events, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        
+        break;
 
     case "POST":
 
@@ -30,8 +41,8 @@ switch ($method) {
 
             // echo 'deu bom';
 
-            $sql = "INSERT INTO events (name, description, state , city, address, mobile, image_path, user_id) 
-                    VALUES(:name, :description, :state , :city, :address, :mobile, :image_path, :user_id)";
+            $sql = "INSERT INTO events (name, description, state , city, address, date,  mobile, image_path, user_id) 
+                    VALUES(:name, :description, :state , :city, :address, :date, :mobile, :image_path, :user_id)";
             $stmt = $conn->prepare($sql);
 
             $stmt->bindParam(':name', $event->name);
@@ -39,6 +50,7 @@ switch ($method) {
             $stmt->bindParam(':state', $event->state);
             $stmt->bindParam(':city', $event->city);
             $stmt->bindParam(':address', $event->address);
+            $stmt->bindParam(':date', $event->dateAndHour);
             $stmt->bindParam(':mobile', $event->mobile);
             $stmt->bindParam(':image_path', $event->image);
             $stmt->bindParam(':user_id', $event->userID);
@@ -56,32 +68,6 @@ switch ($method) {
 
         }
 
-
-
-
-    //   if(empty($email_err)){
-
-    //       $hash = password_hash($user->password,  PASSWORD_DEFAULT);
-
-    //        $sql = "INSERT INTO register (name, email, password) VALUES(:name, :email, :password)";
-    //        $stmt = $conn->prepare($sql);
-
-    //        $stmt->bindParam(':name', $user->name);
-    //        $stmt->bindParam(':email', $user->email);
-    //        $stmt->bindParam(':password', $hash);
-
-
-
-    //        if($stmt->execute()) {
-    //           $response = ['status' => 1, 'message' => 'Conta criada com sucesso'];
-    //        } else {
-    //           $response = ['status' => 0, 'message' => 'Falha ou criar conta'];
-
-    //        }
-    //        echo json_encode($response , JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-    //        break;
-    //      }
 
 
 
