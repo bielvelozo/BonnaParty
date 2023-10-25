@@ -23,6 +23,12 @@ import { useEffect, useState } from "react";
 export default function register() {
   const [status, setStatus] = useState("");
 
+
+  useEffect(() => {
+    localStorage.getItem("id") > 0 === false && location.replace('/')
+}, [])
+
+
   const {
     register,
     handleSubmit,
@@ -57,9 +63,26 @@ export default function register() {
       .then((response) => response.json())
       .then((json) => setStatus(json.message))
       .catch((err) => setStatus(err));
+
+      function handlePhone(event) {
+        let input = event.target
+        input.value = phoneMask(input.value)
+      }
+      
+      const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g,'')
+        value = value.replace(/(\d{2})(\d)/,"($1) $2")
+        value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+        return value
+      }
   }
 
-  return (
+      
+      return (
+        
+        
+
     <>
       <FormWrapper onSubmit={handleSubmit(createEvent)}>
         <FormInputRow>
@@ -88,7 +111,7 @@ export default function register() {
         </FormInputRow>
         <FormInputRow>
           <FormLabel>Contato</FormLabel>
-          <FormInput type="number" {...register("mobile")} />
+          <FormInput type="tel" maxlength="15" onkeyup={ handlePhone()} {...register("mobile")} />
         </FormInputRow>
         <FormInputRow>
           <FormLabel>Imagem do Evento</FormLabel>
