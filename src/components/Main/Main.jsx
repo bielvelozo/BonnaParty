@@ -16,64 +16,29 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { MainContainer, CardDiv } from "../../styles/Main.styled";
 
-const events = [
-  {
-    name: "Juliana",
-    date: "2023-08-15",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante a libero auctor congue.",
-  },
-  {
-    name: "Gustavo",
-    date: "2023-08-16",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet dui ut dolor gravida vulputate.",
-  },
-  {
-    name: "Camila",
-    date: "2023-08-17",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tristique euismod lacus, ac egestas velit venenatis ac.",
-  },
-  {
-    name: "Amanda",
-    date: "2023-08-18",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vel aliquet arcu, sit amet fringilla tortor.",
-  },
-  {
-    name: "Ricardo",
-    date: "2023-08-19",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla urna nec ligula volutpat, at sollicitudin dui luctus.",
-  },
-  {
-    name: "Bianca",
-    date: "2023-08-20",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec arcu ut ligula tincidunt dapibus.",
-  },
-];
-
-async function getEvents() {
-  await fetch("http://localhost/bonna_party/src/api/registerEvent.php", {
-    method: "GET",
-  })
-    .then((events) => events.json())
-    .then((json) => console.log(json))
-    .catch((err) => console.log(err));
-}
 
 function Main() {
-
-  React.useEffect(() => {
-    getEvents();
+  
+  const [events , setEvents] = React.useState([])
+  
+  async function getEvents() {
+    await fetch("http://localhost/bonna_party/src/api/registerEvent.php", {
+      method: "GET",
+    })
+      .then((events) => events.json())
+      .then((json) => setEvents(json.map(e => e)))
+      .catch((err) => console.log(err));
+      console.log(events)
+    }
+    
+    React.useEffect(() => {
+      getEvents();
   }, []);
 
   
   return (
     <MainContainer>
-      {events.map((event, i) => (
+           {events.map((event, i) => (
         <CardDiv key={i}>
           <Card sx={{ maxWidth: 345 }}>
             <CardHeader
@@ -93,7 +58,7 @@ function Main() {
             <CardMedia
               component="img"
               height="300"
-              image="/assets/Evento1.png"
+              image={`assets/image1.jpeg`}
               alt="Paella dish"
             />
             <CardContent>
