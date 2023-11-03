@@ -67,39 +67,33 @@ export const createEventFormSchema = z.object({
   //   .nonempty("A senha é obrigatória")
   //   .min(6, "A senha precisa ter no mínimo 6 caracteres"),
 
-  name: z
-    .string()
-    .nonempty("O estado é obrigatório "),
-
+  name: z.string().nonempty("O nome do evento é obrigatório "),
 
   description: z
     .string()
-    .max(200 , "A descriçao deve ter no máximo 50 letras"),
+    .nonempty(
+      "Escreva uma breve descrição para que as pessoas possam conhecer mais sobre seu evento!"
+    )
+    .max(200, "A descriçao deve ter no máximo 200 letras"),
 
-    state: z
-    .string()
-    .nonempty("O estado é obrigatório "),
+  cep: z.string().nonempty("O número de cep é obrigatório"),
 
-    city: z
-    .string()
-    .nonempty("A cidade é obrigatória "),
+  street: z.string().nonempty("A rua é obrigatória"),
 
-    address: z
-    .string()
-    .nonempty("O endereço é obrigatório"),
+  number: z.string().nonempty("O número é obrigatório"),
 
-    dateAndHour: z
-    .string()
-    .nonempty("A data e o horário são obrigatórios"),
-    // .datetime({ message: "Data e hora inválidos. Devem ser no formato UTC." }),
-    mobile: z
-    .string()
-    .nonempty("O número para contato é obrigatório"),
-    
-    // .("O número para contato é obrigatório"),
-    image: z
-    .any()
+  hood: z.string().nonempty("O bairro é obrigatório"),
 
+  state: z.string().nonempty("O estado é obrigatório "),
+
+  city: z.string().nonempty("A cidade é obrigatória "),
+
+  dateAndHour: z.string().nonempty("A data e o horário são obrigatórios"),
+  // .datetime({ message: "Data e hora inválidos. Devem ser no formato UTC." }),
+  mobile: z.string().nonempty("O número para contato é obrigatório"),
+
+  // .("O número para contato é obrigatório"),
+  image: z.any(),
 });
 
 export const verify = (errors, status) => {
@@ -114,7 +108,7 @@ export const verify = (errors, status) => {
 
 export const err = (errors) => {
   const msg = [];
-  
+
   for (let i in errors) {
     msg.push(errors[i].message);
   }

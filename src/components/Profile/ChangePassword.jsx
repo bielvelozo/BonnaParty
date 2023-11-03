@@ -33,7 +33,7 @@ export default function ChangePass() {
     async function sendPass(data) {
         data = {...data ,id: localID}
         console.log(data)
-        await fetch("http://localhost/bonna_party/src/api/changePassword.php", {
+        await fetch("http://localhost/BonnaParty/src/api/changePassword.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { "Content-type": "application/json; charset=UTF-8" }

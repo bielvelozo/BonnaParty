@@ -32,7 +32,7 @@ export default function register() {
 
     async function createUser(data) {
 
-        await fetch("http://localhost/bonna_party/src/api/register.php", {
+        await fetch("http://localhost/BonnaParty/src/api/register.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { "Content-type": "application/json; charset=UTF-8" }

@@ -22,7 +22,7 @@ function Main() {
   const [events , setEvents] = React.useState([])
   
   async function getEvents() {
-    await fetch("http://localhost/bonna_party/src/api/registerEvent.php", {
+    await fetch("http://localhost/BonnaParty/src/api/registerEvent.php", {
       method: "GET",
     })
       .then((events) => events.json())

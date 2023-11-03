@@ -82,7 +82,11 @@ export const FormWrapper = styled.form`
 	padding-top: 0;
 	width: 100%;
 	display: grid;
+
     grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: repeat(5, 1fr);
+	align-items:center;
+	justify-content:center;
     /* gap: 1rem; */
     column-gap: 2rem;
 `;
@@ -147,12 +151,14 @@ export const FormButton = styled.button`
 	/* color: #fff; */
 	outline: none;
 	width: 100%;
+	height: 50px;
 	font-size: 1.2rem;
 	padding: 3px 13px;
 	border: 2px solid black;
 	cursor: pointer;
 	position: relative;
 	overflow: hidden;
+	grid-column: 2;
 
 	&:hover {
 		color: white;

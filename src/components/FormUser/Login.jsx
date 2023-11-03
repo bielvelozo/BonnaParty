@@ -29,7 +29,7 @@ export default function login() {
 
     async function readUser(data) {
 
-        await fetch("http://localhost/bonna_party/src/api/login.php", {
+        await fetch("http://localhost/BonnaParty/src/api/login.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: { "Content-type": "application/json; charset=UTF-8" }
@@ -43,7 +43,7 @@ export default function login() {
                 localStorage.setItem('id', json.id,)
                 localStorage.setItem('email', json.email,)
         
-               // location.reload()
+               location.reload()
             })
             .catch(err => setStatus(err))
 

@@ -7,6 +7,10 @@ include 'DbConnect.php';
 $objDb = new DbConnect;
 $conn = $objDb->connect();
 
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
+
 
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -41,15 +45,18 @@ switch ($method) {
 
             // echo 'deu bom';
 
-            $sql = "INSERT INTO events (name, description, state , city, address, date,  mobile, image_path, user_id) 
-                    VALUES(:name, :description, :state , :city, :address, :date, :mobile, :image_path, :user_id)";
+            $sql = "INSERT INTO events (name, description,cep, street, number, state , city, hood, date,  mobile, image_path, user_id) 
+                    VALUES(:name, :description, :cep, :street, :number, :state , :city, :hood, :date, :mobile, :image_path, :user_id)";
             $stmt = $conn->prepare($sql);
 
             $stmt->bindParam(':name', $event->name);
             $stmt->bindParam(':description', $event->description);
+            $stmt->bindParam(':cep', $event->cep);
+            $stmt->bindParam(':street', $event->street);
+            $stmt->bindParam(':number', $event->number);
             $stmt->bindParam(':state', $event->state);
             $stmt->bindParam(':city', $event->city);
-            $stmt->bindParam(':address', $event->address);
+            $stmt->bindParam(':hood', $event->hood);
             $stmt->bindParam(':date', $event->dateAndHour);
             $stmt->bindParam(':mobile', $event->mobile);
             $stmt->bindParam(':image_path', $event->image);

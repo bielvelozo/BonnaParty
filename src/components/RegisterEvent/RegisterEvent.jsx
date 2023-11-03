@@ -3,11 +3,21 @@
 import {
   FormWrapper,
   FormInput,
-  FormLabel,
+  // FormLabel,
   FormInputRow,
   FormMessage,
   FormButton,
 } from "./FormStyles";
+import {
+  Input,
+  InputLabel,
+  FormControl,
+  TextField,
+  FormLabel,
+  TextareaAutosize,
+  Autocomplete,
+  Button,
+} from "@mui/material";
 
 import { useForm } from "react-hook-form";
 import {
@@ -15,7 +25,6 @@ import {
   err,
   messageVariants,
   createEventFormSchema,
-  createUserFormSchema,
 } from "@/utils/validateForms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
@@ -23,11 +32,39 @@ import { useEffect, useState } from "react";
 export default function register() {
   const [status, setStatus] = useState("");
 
-
   useEffect(() => {
-    localStorage.getItem("id") > 0 === false && location.replace('/')
-}, [])
+    localStorage.getItem("id") > 0 === false && location.replace("/");
+  }, []);
 
+  const states = [
+    { uf: "AC", label: "Acre" },
+    { uf: "AL", label: "Alagoas" },
+    { uf: "AP", label: "Amapá" },
+    { uf: "AM", label: "Amazonas" },
+    { uf: "BA", label: "Bahia" },
+    { uf: "CE", label: "Ceará" },
+    { uf: "DF", label: "Distrito Federal" },
+    { uf: "ES", label: "Espirito Santo" },
+    { uf: "GO", label: "Goiás" },
+    { uf: "MA", label: "Maranhão" },
+    { uf: "MS", label: "Mato Grosso do Sul" },
+    { uf: "MT", label: "Mato Grosso" },
+    { uf: "MG", label: "Minas Gerais" },
+    { uf: "PA", label: "Pará" },
+    { uf: "PB", label: "Paraíba" },
+    { uf: "PR", label: "Paraná" },
+    { uf: "PE", label: "Pernambuco" },
+    { uf: "PI", label: "Piauí" },
+    { uf: "RJ", label: "Rio de Janeiro" },
+    { uf: "RN", label: "Rio Grande do Norte" },
+    { uf: "RS", label: "Rio Grande do Sul" },
+    { uf: "RO", label: "Rondônia" },
+    { uf: "RR", label: "Roraima" },
+    { uf: "SC", label: "Santa Catarina" },
+    { uf: "SP", label: "São Paulo" },
+    { uf: "SE", label: "Sergipe" },
+    { uf: "TO", label: "Tocantins" },
+  ];
 
   const {
     register,
@@ -39,23 +76,26 @@ export default function register() {
     const formData = new FormData();
     formData.append("image", data.image[0]);
 
-    
-    const idData = {...data , userID: localStorage.getItem("id"), image:data.image[0].name}
+    const idData = {
+      ...data,
+      userID: localStorage.getItem("id"),
+      image: data.image[0].name,
+    };
     console.log(idData);
-    
+
     //upload image
-    await fetch("http://localhost/bonna_party/src/api/upload.php", {
-      method: "POST",
-      body: formData,
-      headers: { enctype: "multipart/form-data" },
-    })
-      .then((response) => console.log(response))
-      // .then(json => console.log(json.message))
-      .catch((err) => console.log(err));
+    // await fetch("http://localhost/BonnaParty/src/api/upload.php", {
+    //   method: "POST",
+    //   body: formData,
+    //   headers: { enctype: "multipart/form-data" },
+    // })
+    //   .then((response) => console.log(response))
+    //   // .then(json => console.log(json.message))
+    //   .catch((err) => console.log(err));
 
-      //Cadastar evento
+    // Cadastar evento
 
-    await fetch("http://localhost/bonna_party/src/api/registerEvent.php", {
+    await fetch("http://localhost/BonnaParty/src/api/registerEvent.php", {
       method: "POST",
       body: JSON.stringify(idData),
       headers: { "Content-type": "application/json; charset=UTF-8" },
@@ -63,80 +103,87 @@ export default function register() {
       .then((response) => response.json())
       .then((json) => setStatus(json.message))
       .catch((err) => setStatus(err));
-
-      function handlePhone(event) {
-        let input = event.target
-        input.value = phoneMask(input.value)
-      }
-      
-      const phoneMask = (value) => {
-        if (!value) return ""
-        value = value.replace(/\D/g,'')
-        value = value.replace(/(\d{2})(\d)/,"($1) $2")
-        value = value.replace(/(\d)(\d{4})$/,"$1-$2")
-        return value
-      }
   }
 
-      
-      return (
-        
-        
+  const phoneMask = (value) => {
+    if (!value) return "";
+    value = value.replace(/\D/g, "");
+    value = value.replace(/(\d{2})(\d)/, "($1) $2");
+    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
+    return value;
+  };
 
+  function handlePhone(event) {
+    let input = event.target;
+    input.value = phoneMask(input.value);
+  }
+
+  return (
     <>
       <FormWrapper onSubmit={handleSubmit(createEvent)}>
-        <FormInputRow>
-          <FormLabel>Nome do Evento</FormLabel>
-          <FormInput type="text" {...register("name")} />
-        </FormInputRow>
-        <FormInputRow>
-          <FormLabel>Descrição</FormLabel>
-          <textarea type="text" {...register("description")} />
-        </FormInputRow>
-        <FormInputRow>
-          <FormLabel>Estado</FormLabel>
-          <FormInput type="text" {...register("state")} />
-        </FormInputRow>
-        <FormInputRow>
-          <FormLabel>Cidade</FormLabel>
-          <FormInput type="text" {...register("city")} />
-        </FormInputRow>
-        <FormInputRow>
-          <FormLabel>Endereço</FormLabel>
-          <FormInput type="text" {...register("address")} />
-        </FormInputRow>
-        <FormInputRow>
+        <FormControl>
+          <TextField
+            type="text"
+            variant="outlined"
+            label="Nome do Evento"
+            {...register("name")}
+          />
+        </FormControl>
+        <FormControl>
+          <TextField
+            placeholder="Descreva o seu evento"
+            multiline
+            rows={2}
+            maxRows={4}
+            label="Descrição"
+            {...register("description")}
+          />
+        </FormControl>
+        <FormControl>
+          <TextField type="number" label="Cep" {...register("cep")} />
+        </FormControl>
+        <FormControl>
+          <TextField type="text" label="Rua" {...register("street")} />
+        </FormControl>
+        <FormControl>
+          <TextField type="number" label="Número" {...register("number")} />
+        </FormControl>
+        <FormControl>
+          <TextField type="text" label="Bairro" {...register("hood")} />
+        </FormControl>
+        <FormControl>
+          <TextField type="text" label="Cidade" {...register("city")} />
+        </FormControl>
+        <FormControl>
+          <Autocomplete
+            disablePortal
+            options={states}
+            sx={{ width: 300 }}
+           
+            renderInput={(params) => <TextField {...params} label="Estado"  {...register("state")} />}
+          />
+        </FormControl>
+        <FormControl>
           <FormLabel>Data e Horário</FormLabel>
-          <FormInput type="datetime-local" {...register("dateAndHour")} />
-        </FormInputRow>
-        <FormInputRow>
-          <FormLabel>Contato</FormLabel>
-          <FormInput type="tel" maxlength="15" onkeyup={ handlePhone()} {...register("mobile")} />
-        </FormInputRow>
-        <FormInputRow>
+          <TextField type="datetime-local" {...register("dateAndHour")} />
+        </FormControl>
+        <FormControl>
+          <TextField
+            label="Contanto"
+            type="tel"
+            maxlength="15"
+            // onkeyup={(e) => handlePhone(e)}
+            {...register("mobile")}
+          />
+        </FormControl>
+        <FormControl>
           <FormLabel>Imagem do Evento</FormLabel>
-          <FormInput type="file" {...register("image")} />
-        </FormInputRow>
+          <TextField
+            type="file"
+            {...register("image")}
+          />
+        </FormControl>
         <FormButton type="submit">Cadastrar Evento</FormButton>
-      </FormWrapper>
-
-      {/* <FormWrapper onSubmit={handleSubmit(createEvent)}>
-                <FormInputRow>
-                    <FormLabel>Nome de Evento</FormLabel>
-                    <FormInput type="name" {...register('name')} />
-                </FormInputRow>
-                <FormInputRow>
-                    <FormLabel>Email</FormLabel>
-                    <FormInput type="email"{...register('email')} />
-                </FormInputRow>
-                <FormInputRow>
-                    <FormLabel>Senha</FormLabel>
-                    <FormInput type="password"{...register('password')} />
-                </FormInputRow>
-
-                <FormButton type='submit'>Cadastrar</FormButton>
-            </FormWrapper> */}
-
       {verify(errors, status) && (
         <FormMessage
           variants={messageVariants}
@@ -146,7 +193,9 @@ export default function register() {
           {err(errors)}
           {status}
         </FormMessage>
+
       )}
+      </FormWrapper>
     </>
   );
 }
