@@ -84,14 +84,14 @@ export default function register() {
     console.log(idData);
 
     //upload image
-    // await fetch("http://localhost/BonnaParty/src/api/upload.php", {
-    //   method: "POST",
-    //   body: formData,
-    //   headers: { enctype: "multipart/form-data" },
-    // })
-    //   .then((response) => console.log(response))
-    //   // .then(json => console.log(json.message))
-    //   .catch((err) => console.log(err));
+    await fetch("http://localhost/BonnaParty/src/api/upload.php", {
+      method: "POST",
+      body: formData,
+      headers: { enctype: "multipart/form-data" },
+    })
+      .then((response) => console.log(response))
+      // .then(json => console.log(json.message))
+      .catch((err) => console.log(err));
 
     // Cadastar evento
 

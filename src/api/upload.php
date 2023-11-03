@@ -7,6 +7,10 @@ include 'DbConnect.php';
 $objDb = new DbConnect;
 $conn = $objDb->connect();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_erros', 1);
+error_reporting(E_ALL);
+
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -52,10 +56,12 @@ switch ($method) {
                     'error:' => false,
                     "message" => "File uploaded succesfully $image_name!"
                 );
+           
+                $destination = $_SERVER['DOCUMENT_ROOT'] . '/images/' . $image_name;
 
                 move_uploaded_file(
-                    $image_file["tmp_name"],
-                    __DIR__ . "/images/" . $image_name
+                    $image_file["tmp_name"], $destination 
+                    
                 );
             }
 

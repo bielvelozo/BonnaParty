@@ -18,6 +18,7 @@ export default function FormRegister({ show, set }) {
   return (
     <FormSection>
       <Register />
+      
     </FormSection>
   );
 }
