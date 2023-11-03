@@ -73,17 +73,28 @@ export default function register() {
   } = useForm({ resolver: zodResolver(createEventFormSchema) });
 
   async function createEvent(data) {
+
+    const imageFile = data.image[0];
+    const timestamp = new Date().getTime();
+    const fileExtension = imageFile.name.split(".").pop();
+    const newFileName = `img_${timestamp}.${fileExtension}`;
+
+    const newFile = new File([imageFile], newFileName, { type: imageFile.type });
+
+    console.log(newFile);
+
     const formData = new FormData();
-    formData.append("image", data.image[0]);
+    formData.append("image", newFile);
+
 
     const idData = {
       ...data,
       userID: localStorage.getItem("id"),
-      image: data.image[0].name,
+      image: newFileName,
     };
     console.log(idData);
 
-    //upload image
+    // upload image
     await fetch("http://localhost/BonnaParty/src/api/upload.php", {
       method: "POST",
       body: formData,
@@ -105,19 +116,6 @@ export default function register() {
       .catch((err) => setStatus(err));
   }
 
-  const phoneMask = (value) => {
-    if (!value) return "";
-    value = value.replace(/\D/g, "");
-    value = value.replace(/(\d{2})(\d)/, "($1) $2");
-    value = value.replace(/(\d)(\d{4})$/, "$1-$2");
-    return value;
-  };
-
-  function handlePhone(event) {
-    let input = event.target;
-    input.value = phoneMask(input.value);
-  }
-
   return (
     <>
       <FormWrapper onSubmit={handleSubmit(createEvent)}>
@@ -134,13 +132,13 @@ export default function register() {
             placeholder="Descreva o seu evento"
             multiline
             rows={2}
-            maxRows={4}
+            // maxRows={4}
             label="Descrição"
             {...register("description")}
           />
         </FormControl>
         <FormControl>
-          <TextField type="number" label="Cep" {...register("cep")} />
+          <TextField type="text" label="Cep" {...register("cep")} />
         </FormControl>
         <FormControl>
           <TextField type="text" label="Rua" {...register("street")} />
@@ -159,8 +157,9 @@ export default function register() {
             disablePortal
             options={states}
             sx={{ width: 300 }}
-           
-            renderInput={(params) => <TextField {...params} label="Estado"  {...register("state")} />}
+            renderInput={(params) => (
+              <TextField {...params} label="Estado" {...register("state")} />
+            )}
           />
         </FormControl>
         <FormControl>
@@ -178,23 +177,19 @@ export default function register() {
         </FormControl>
         <FormControl>
           <FormLabel>Imagem do Evento</FormLabel>
-          <TextField
-            type="file"
-            {...register("image")}
-          />
+          <TextField type="file" {...register("image")} />
         </FormControl>
         <FormButton type="submit">Cadastrar Evento</FormButton>
-      {verify(errors, status) && (
-        <FormMessage
-          variants={messageVariants}
-          initial="hidden"
-          animate="animate"
-        >
-          {err(errors)}
-          {status}
-        </FormMessage>
-
-      )}
+        {verify(errors, status) && (
+          <FormMessage
+            variants={messageVariants}
+            initial="hidden"
+            animate="animate"
+          >
+            {err(errors)}
+            {status}
+          </FormMessage>
+        )}
       </FormWrapper>
     </>
   );

@@ -58,7 +58,7 @@ function Main() {
             <CardMedia
               component="img"
               height="300"
-              image={`../../api/images/${event.image_path}`}
+              image={`/images/${event.image_path}`}
               alt="Paella dish"
             />
             <CardContent>

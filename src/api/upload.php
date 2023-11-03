@@ -29,6 +29,7 @@ switch ($method) {
             $error = $_FILES['image']['error'];
             $image_type = exif_imagetype($image_tmp);
 
+
             if ($error > 0) {
 
                 $response = array(
@@ -47,8 +48,10 @@ switch ($method) {
                     die('Uploaded file has no contents.');
                 }
 
-                $image_extension = image_type_to_extension($image_type, true);
-                $image_name = bin2hex(random_bytes(16)) . $image_extension;
+                // $image_extension = image_type_to_extension($image_type, true);
+                // $image_name = bin2hex(random_bytes(16)) . $image_extension;
+                
+               
 
 
                 $response = array(
@@ -56,13 +59,13 @@ switch ($method) {
                     'error:' => false,
                     "message" => "File uploaded succesfully $image_name!"
                 );
-           
-                $destination = $_SERVER['DOCUMENT_ROOT'] . '/images/' . $image_name;
 
-                move_uploaded_file(
-                    $image_file["tmp_name"], $destination 
-                    
-                );
+           
+              move_uploaded_file(
+              $image_file["tmp_name"],
+              __DIR__ . "/../../public/images/" . $image_name
+
+          );
             }
 
 
