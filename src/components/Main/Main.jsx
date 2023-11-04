@@ -15,67 +15,59 @@ import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { MainContainer, CardDiv } from "../../styles/Main.styled";
-
+import { Button } from "@mui/material";
+import Link from "next/link";
 
 function Main() {
-  
-  const [events , setEvents] = React.useState([])
-  
+  const [events, setEvents] = React.useState([]);
+
   async function getEvents() {
     await fetch("http://localhost/BonnaParty/src/api/registerEvent.php", {
       method: "GET",
     })
       .then((events) => events.json())
-      .then((json) => setEvents(json.map(e => e)))
+      .then((json) => setEvents(json.map((e) => e)))
       .catch((err) => console.log(err));
-      console.log(events)
-    }
-    
-    React.useEffect(() => {
-      getEvents();
+    console.log(events);
+  }
+
+  React.useEffect(() => {
+    getEvents();
   }, []);
 
-  
   return (
     <MainContainer>
-           {events.map((event, i) => (
+      {events.map((event, i) => (
         <CardDiv key={i}>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
-              avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  {event.name[0]}
-                </Avatar>
-              }
-              action={
-                <IconButton aria-label="settings">
-                  <MoreVertIcon />
-                </IconButton>
-              }
-              title={event.name}
-              subheader={event.date}
-            />
+          <Card sx={{ width: 345}}>
             <CardMedia
               component="img"
-              height="300"
+              height="200"
               image={`/images/${event.image_path}`}
               alt="Paella dish"
             />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                {event.description}
+            <CardContent sx={{height: 110}} >
+              <Typography
+                sx={{ fontSize: 20  }}
+                component="div"
+                color="text.secondary"
+              >
+                {event.name}
+              </Typography>
+              <Typography
+                sx={{  marginTop:1 }}
+                variant="body2"
+                component="div"
+                color="text.secondary"
+              >
+                {event.date}
               </Typography>
             </CardContent>
-            <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
-              <IconButton aria-label="Contato">
-                <WhatsAppIcon />
-              </IconButton>
+            <CardActions>
+              <Button variant="outlined" size="small">Compartilhar</Button>
+              <Link href={`Eventos/${event.id}`}>
+                <Button variant="outlined" size="small">Saiba Mais</Button>
+              </Link>
             </CardActions>
           </Card>
         </CardDiv>

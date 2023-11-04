@@ -20,12 +20,29 @@ switch ($method) {
 
 
     case "GET":
-        $sql = "SELECT * FROM events";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute();
-        $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
-  
-        echo json_encode($events, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+            $sql = "SELECT * FROM events WHERE id = :id";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            $event = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($event) {
+                echo json_encode($event, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            } else {
+                echo json_encode(['status' => 0, 'message' => 'Event not found'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            }
+        } else {
+            $sql = "SELECT * FROM events";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $events = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      
+            echo json_encode($events, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+           
+        }
+
         
         break;
 

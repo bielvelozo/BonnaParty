@@ -14,9 +14,26 @@ const GlobalStyle = createGlobalStyle`
 
 export const Container = styled.div`
 	width: 100%;
-	max-width: 800px;
+	max-width: 1440px;
 	margin: ${({ margin }) => (margin ? margin : '0 auto')};
 	padding: ${({ padding }) => (padding ? padding : '0 15px')};
+
+    @media (max-width: 1430px) {
+        max-width: 1140px;
+    }
+
+    @media (max-width:1200px) {
+        max-width: 960px;
+
+    }
+    @media (max-width:992px) {
+        max-width: 720px;
+    }
+
+    @media (max-width:768px) {
+        max-width: 540px;
+    }
+
 `;
 
 export const Header = styled.h1`
@@ -65,22 +82,17 @@ export const Column = styled(DEFAULT_DIV)`
 	gap: ${({ gap }) => (gap ? gap : '')};
 `;
 
-export const Text = styled.span`
-	font-size: ${({ size }) => (size ? size : '')};
-	font-weight: ${({ weight }) => (weight ? weight : '')};
-	letter-spacing: ${({ spacing }) => (spacing ? spacing : '')};
-	text-align: ${({ align }) => (align ? align : '')};
-	padding: ${({ padding }) => (padding ? padding : '')};
-	margin: ${({ margin }) => (margin ? margin : '')};
-	margin-bottom: ${({ mb }) => (mb ? mb : '')};
-	margin-top: ${({ mt }) => (mt ? mt : '')};
-	width: ${({ width }) => (width ? width : 'auto')};
-	min-width: ${({ minWidth }) => (minWidth ? minWidth : '')};
-	max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : '')};
-	height: ${({ height }) => (height ? height : '')};
-	max-height: ${({ maxHeight }) => (maxHeight ? maxHeight : '')};
-	min-height: ${({ minHeight }) => (minHeight ? minHeight : '')};
-	color: ${({ color }) => (color ? color : '')};
+export const Text = styled.p`
+	font-size: 1.5rem;
+	font-weight: 400;
+	line-height: calc(1.5 * 1.4)
+
+`;
+export const TextBold = styled.p`
+	font-size: 1.3rem;
+	font-weight: 500;
+	line-height: calc(1.3 * 1.4)
+
 `;
 
 export const Button = styled.button`
@@ -111,5 +123,10 @@ export const Button = styled.button`
 		background-color: #0a1573;
 	}
 `;
+
+export const Title2 = styled.h1 `
+	font-size: 2rem;
+	font-weight: 600;
+`
 
 export default GlobalStyle;
