@@ -7,10 +7,12 @@ import  Main  from '../components/Main/Main'
 export default function Home() {
   return (
     <>
-      <Highlight/>
       <Header/>
+      <Highlight/>
       <Filter/>
-      <Main/>
+      <main style={{background:`#fafafa`}}>
+        <Main/>
+      </main>
     </>
   )
 }

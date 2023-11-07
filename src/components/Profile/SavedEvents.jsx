@@ -1,84 +1,90 @@
-import { Content , Line , LineTitle } from "@/styles/profileCards.style"
-import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { MainContainer, CardDiv } from '../../styles/Main.styled'
+"use client";
 
-const events = [
-    {
-        name: "Juliana",
-        date: "2023-08-15",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget ante a libero auctor congue."
-    },
-    {
-        name: "Gustavo",
-        date: "2023-08-16",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet dui ut dolor gravida vulputate."
-    },
-    {
-        name: "Camila",
-        date: "2023-08-17",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce tristique euismod lacus, ac egestas velit venenatis ac."
-    },
-
-
-
-];
+import * as React from "react";
+import { Content, Line, LineTitle } from "@/styles/profileCards.style";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShareIcon from "@mui/icons-material/Share";
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import { MainContainer, CardDiv } from "../../styles/Main.styled";
+import { Button } from "@mui/material";
+import Link from "next/link";
 
 export default function SavedEvents() {
-    return (
+  const [localID, setLocalID] = React.useState("");
 
-        <Content>
-            <Line>
-                <LineTitle>
-                    Eventos Salvos
-                </LineTitle>
-            </Line>
-            <MainContainer>
+  const [events, setEvents] = React.useState([]);
 
-{events.map((event , i) => (
-    <CardDiv key={i}>
+  async function getEvents() {
+    await fetch(
+        `http://localhost/BonnaParty/src/api/registerEvent.php?user_id=${36}`,
+        {
+          method: "GET",
+        }
+      )
+      .then((events) => events.json())
+      .then((json) => setEvents(json.map((e) => e)))
+      .catch((err) => console.log(err));
+    console.log(events);
+  }
 
-        <Card sx={{ maxWidth: 345 }} >
+  React.useEffect(() => {
+    setLocalID(localStorage.getItem("id"));
+    getEvents();
+  }, []);
 
-            <CardMedia
+  return (
+    <Content>
+      <Line>
+        <LineTitle>Eventos Criados</LineTitle>
+      </Line>
+      <MainContainer>
+        
+        {events.length >= 1 && events.map((event, i) => (
+          <CardDiv key={i}>
+            <Card sx={{ width: 345 }}>
+              <CardMedia
                 component="img"
-                height="300"
-                image="/assets/Evento1.png"
+                height="200"
+                image={`/images/${event.image_path}`}
                 alt="Paella dish"
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    {event.description}
+              />
+              <CardContent sx={{ height: 110 }}>
+                <Typography
+                  sx={{ fontSize: 20 }}
+                  component="div"
+                  color="text.secondary"
+                >
+                  {event.name}
                 </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
-                </IconButton>
-                <IconButton aria-label="Contato">
-                    <WhatsAppIcon />
-                </IconButton>
-            </CardActions>
-
-        </Card>
-    </CardDiv>
-))}
-
-
-</MainContainer>
-
-        </Content>
-
-
-    )
+                <Typography
+                  sx={{ marginTop: 1 }}
+                  variant="body2"
+                  component="div"
+                  color="text.secondary"
+                >
+                  {event.date}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button variant="outlined" size="small" sx={{ marginRight: 1 }}>
+                  Compartilhar
+                </Button>
+                <Link href={`Eventos/${event.id}`}>
+                  <Button variant="outlined" size="small">
+                    Saiba Mais
+                  </Button>
+                </Link>
+              </CardActions>
+            </Card>
+          </CardDiv>
+        ))}
+      </MainContainer>
+    </Content>
+  );
 }

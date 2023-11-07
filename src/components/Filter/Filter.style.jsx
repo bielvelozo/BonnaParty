@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
  export const FilterContainer = styled.div`
-    background-color: #fafafa;
+    background-color: #fff;
     position:relative;
-    padding:0  0 10px 20px;
+    padding-bottom:10px;
+    /* border-bottom: 1px solid #a3a3a3; */
+    /* box-shadow: 1px 1px 1px #000; */
 
     display:flex;
     align-items:flex-end; 

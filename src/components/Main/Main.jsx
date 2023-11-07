@@ -17,6 +17,7 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import { MainContainer, CardDiv } from "../../styles/Main.styled";
 import { Button } from "@mui/material";
 import Link from "next/link";
+import { Container } from "@/globalStyles";
 
 function Main() {
   const [events, setEvents] = React.useState([]);
@@ -36,43 +37,49 @@ function Main() {
   }, []);
 
   return (
-    <MainContainer>
-      {events.map((event, i) => (
-        <CardDiv key={i}>
-          <Card sx={{ width: 345}}>
-            <CardMedia
-              component="img"
-              height="200"
-              image={`/images/${event.image_path}`}
-              alt="Paella dish"
-            />
-            <CardContent sx={{height: 110}} >
-              <Typography
-                sx={{ fontSize: 20  }}
-                component="div"
-                color="text.secondary"
-              >
-                {event.name}
-              </Typography>
-              <Typography
-                sx={{  marginTop:1 }}
-                variant="body2"
-                component="div"
-                color="text.secondary"
-              >
-                {event.date}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button variant="outlined" size="small">Compartilhar</Button>
-              <Link href={`Eventos/${event.id}`}>
-                <Button variant="outlined" size="small">Saiba Mais</Button>
-              </Link>
-            </CardActions>
-          </Card>
-        </CardDiv>
-      ))}
-    </MainContainer>
+    <Container>
+      <MainContainer>
+        {events.map((event, i) => (
+          <CardDiv key={i}>
+            <Card sx={{ width: 345 }}>
+              <CardMedia
+                component="img"
+                height="200"
+                image={`/images/${event.image_path}`}
+                alt="Paella dish"
+              />
+              <CardContent sx={{ height: 110 }}>
+                <Typography
+                  sx={{ fontSize: 20 }}
+                  component="div"
+                  color="text.secondary"
+                >
+                  {event.name}
+                </Typography>
+                <Typography
+                  sx={{ marginTop: 1 }}
+                  variant="body2"
+                  component="div"
+                  color="text.secondary"
+                >
+                  {event.date}
+                </Typography>
+              </CardContent>
+              <CardActions>
+                <Button variant="outlined" size="small" sx={{ marginRight: 1 }}>
+                  Compartilhar
+                </Button>
+                <Link href={`Eventos/${event.id}`}>
+                  <Button variant="outlined" size="small">
+                    Saiba Mais
+                  </Button>
+                </Link>
+              </CardActions>
+            </Card>
+          </CardDiv>
+        ))}
+      </MainContainer>
+    </Container>
   );
 }
 

@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react';
-import Image from 'next/image'
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
@@ -31,70 +31,82 @@ const styleButtonsNext = {
     right: '0',
     left: '',
     transform: 'translateY(-50%)',
-}
+};
 
 const styleImg = {
-        
-        width:'100%',
-        height: 'auto',
+  width: '100%',
+  height: 'auto',
+};
 
-}
+const styleButtonsBack = { ...styleButtonsNext, right: '', left: '0' };
 
-const styleButtonsBack = { ...styleButtonsNext, right: '', left: '0' }
+const ImageCarousel = (props) => {
+  const [isMobile, setIsMobile] = useState(false);
 
-export default function ImageCarousel(props) {
+  useEffect(() => {
+    function handleResize() {
+      setIsMobile(window.innerWidth <= 768); // Defina seu próprio ponto de interrupção para dispositivos móveis
+    }
 
+    handleResize(); // Verifica o tamanho da tela inicialmente
 
+    window.addEventListener('resize', handleResize);
 
-    return (
-        <div
-            style={{
-                zIndex: '0',
-                position:'relative',
-                
-            }}
-        >
-            <CarouselProvider
-                naturalSlideWidth={50}
-                naturalSlideHeight={17.9}
-                totalSlides={3}
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
+  const adjustImageSize = (imgPath) => {
+    if (isMobile) {
+    
+    }
+    return imgPath;
+  };
 
-            >
+  return (
+    <div style={{ zIndex: '0', position: 'relative' }}>
+      <CarouselProvider naturalSlideWidth={50} naturalSlideHeight={17.9} totalSlides={3}>
+        <Slider style={{ boxShadow: 'inset 10px 10px 10px black' }}>
+          <Slide index={0}>
+            <Image
+              src={adjustImageSize('/assets/slide1.png')}
+              width={0}
+              height={0}
+              sizes="100vw"
+              alt="BonnaParty logo"
+              style={styleImg}
+            />
+          </Slide>
+          <Slide index={1}>
+            <Image
+              src={adjustImageSize('/assets/slide2.png')}
+              width={0}
+              height={0}
+              sizes="100vw"
+              alt="BonnaParty logo"
+              style={styleImg}
+            />
+          </Slide>
+          <Slide index={2}>
+            <Image
+              src={adjustImageSize('/assets/slide3.png')}
+              width={0}
+              height={0}
+              sizes="100vw"
+              alt="BonnaParty logo"
+              style={styleImg}
+            />
+          </Slide>
+        </Slider>
 
-                <Slider style={{boxShadow: 'inset 10px 10px 10px black'}}>
-                    <Slide index={0}>
-                        <Image
-                            src={'/assets/slide1.png'}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            alt="BonnaParty logo"
-                            style={styleImg} />
-                    </Slide>
-                    <Slide index={1}>
-                    <Image
-                            src={'/assets/slide2.png'}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            alt="BonnaParty logo"
-                            style={styleImg} />
-                    </Slide>
-                    <Slide index={2}>
-                    <Image
-                            src={'/assets/slide3.png'}
-                            width={0}
-                            height={0}
-                            sizes="100vw"
-                            alt="BonnaParty logo"
-                            style={styleImg} />
-                    </Slide>
-                </Slider>
+        <ButtonBack style={styleButtonsBack}>
+          <ArrowBackIosIcon />
+        </ButtonBack>
+        <ButtonNext style={styleButtonsNext}>
+          <ArrowForwardIosIcon />
+        </ButtonNext>
+      </CarouselProvider>
+    </div>
+  );
+};
 
-                <ButtonBack style={styleButtonsBack}><ArrowBackIosIcon></ArrowBackIosIcon></ButtonBack>
-                <ButtonNext style={styleButtonsNext}><ArrowForwardIosIcon></ArrowForwardIosIcon></ButtonNext>
-            </CarouselProvider>
-        </div>
-    )
-}
+export default ImageCarousel;

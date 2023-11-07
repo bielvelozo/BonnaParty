@@ -1,9 +1,16 @@
 'use client'
 
+import { useEffect } from "react"
+
 
 
 const profile = () => {
+    useEffect (() => {
 
+        if(location.storage) {
+            location.replace('/')
+        }
+    },[] )
  
     return (
         <>
