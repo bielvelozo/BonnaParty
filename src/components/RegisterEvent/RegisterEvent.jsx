@@ -168,7 +168,7 @@ export default function register() {
         </FormControl>
         <FormControl>
           <TextField
-            label="Contanto"
+            label="Contato"
             type="tel"
             maxlength="15"
             // onkeyup={(e) => handlePhone(e)}

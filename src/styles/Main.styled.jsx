@@ -9,8 +9,12 @@ export const MainContainer = styled.div`
   display: flex;
   gap: 20px;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
   flex-wrap: wrap;
+
+  @media(max-width:768px) {
+    justify-content:center;
+  }
 `;
 
 export const CardDiv = styled.div`

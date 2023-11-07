@@ -152,10 +152,10 @@ function Header() {
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  Explorar Eventos
+                <Link href={"/Explorar-Eventos"}>Explorar Eventos</Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Link href={"/Cadastrar-Evento"}>Cadastrar Eventos</Link>
+                  <Link href={"/Cadastrar-Evento"}>Cadastrar Evento</Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
                   Central de Ajuda
