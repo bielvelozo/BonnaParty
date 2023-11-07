@@ -9,8 +9,8 @@ export default function Home() {
     <>
       <Header/>
       <Highlight/>
-      <Filter/>
-      <main style={{background:`#fafafa`}}>
+      {/* <Filter/> */}
+      <main >
         <Main/>
       </main>
     </>

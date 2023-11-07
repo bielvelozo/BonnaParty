@@ -14,7 +14,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-import { MainContainer, CardDiv } from "../../styles/Main.styled";
+import { MainContainer, CardDiv, MainTitle } from "../../styles/Main.styled";
 import { Button } from "@mui/material";
 import Link from "next/link";
 import { Container } from "@/globalStyles";
@@ -38,6 +38,7 @@ function Main() {
 
   return (
     <Container>
+      <MainTitle>Conheça novos eventos</MainTitle>
       <MainContainer>
         {events.map((event, i) => (
           <CardDiv key={i}>

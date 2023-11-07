@@ -156,7 +156,7 @@ export default function register() {
           <Autocomplete
             disablePortal
             options={states}
-            sx={{ width: 300 }}
+            sx={{ width: {lg: 300 , md: 200} }}
             renderInput={(params) => (
               <TextField {...params} label="Estado" {...register("state")} />
             )}

@@ -39,7 +39,7 @@ switch ($method) {
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':user_id', $user_id);
             $stmt->execute();
-            $event = $stmt->fetch(PDO::FETCH_ASSOC);
+            $event = $stmt->fetchAll(PDO::FETCH_ASSOC);
             if ($event) {
                 echo json_encode($event, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
             } else {

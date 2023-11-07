@@ -32,6 +32,10 @@ export const CLoseButton = styled.button `
 		color: #9c27b0
 	}
 
+	@media screen and (max-width: 768px) {
+		right: 28px;
+	}
+
 `
 
 export const FormTitle = styled.h1`
@@ -75,6 +79,7 @@ export const FormColumn = styled.div`
 	flex-direction: column;
 
 	@media screen and (max-width: 768px) {
+		max-width: 100%;
 		
 		flex-basis: 100%;
 	}
@@ -94,10 +99,18 @@ export const FormRow = styled.div`
 	flex-wrap: wrap;
 	align-items: center;
 
+	@media screen and (max-width: 768px) {
+		padding: 0 25px;
+	}
+
 `;
 
 export const FormWrapper = styled.form`
-	/* max-width: 540px; */
+	padding-top: 0;
+	width: 100%;
+`;
+export const FormWrapperDiv = styled.div`
+	max-width: 786px;
 	padding-top: 0;
 	width: 100%;
 `;

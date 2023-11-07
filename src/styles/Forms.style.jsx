@@ -19,6 +19,11 @@ export const StyledInputDiv = styled.div`
     width: 50%;
     margin-bottom: 0.5em;
     padding-right: 1em;
+
+      @media(max-width:768px) {
+        float:none;
+        width:100%;
+    }
 `
 
 export const StyledLabel = styled.div`

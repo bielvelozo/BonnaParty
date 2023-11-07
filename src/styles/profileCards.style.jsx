@@ -23,6 +23,11 @@ export const Center = styled.div`
     padding: 0 15px;
     position:relative;
     
+    @media(max-width:768px) {
+        display:flex;
+        flex-direction: column-reverse;
+    }
+    
 `
 
 export const TitleCard = styled.div`
@@ -40,6 +45,10 @@ export const TitleCard = styled.div`
     line-height: 55px;
     text-indent: 25px;
     text-align: left;
+
+        @media(max-width:768px) {
+            width:100%;
+        }
 `
 
 export const Card = styled(Link)`
@@ -68,6 +77,11 @@ export const UlCards = styled.ul`
     list-style: none;
     margin: 0;
     padding: 12px 0 0;
+
+    @media(max-width:768px) {
+        width:100%;   
+        margin-bottom: 1rem;
+    }
     `
 
 export const LiCards = styled.li`
@@ -97,6 +111,11 @@ export const Content = styled.div`
     width: 100%;
     max-width: 70%;
     float: right;
+       @media(max-width:768px) {
+        max-width:100%;   
+        /* margin-bottom: 1rem; */
+    }
+
     `
 
 export const Line = styled.div`

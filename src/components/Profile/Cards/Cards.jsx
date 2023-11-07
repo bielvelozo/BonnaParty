@@ -47,7 +47,7 @@ export default function Myacc() {
 
 
         <UlCards>
-            {/* <LiCards>
+            <LiCards>
                 <Card
                     onClick={() => {
                         dispatch({ type: 'select', card: 'saved' })
@@ -57,12 +57,12 @@ export default function Myacc() {
 
 
                 >
-                    Eventos Curtidos
+                    Eventos Criados
                     <IconLink>
                         <FavoriteIcon fontSize='medium' />
                     </IconLink>
                 </Card>
-            </LiCards> */}
+            </LiCards>
             <LiCards>
                     <Card
                         href='ChangeEmail'

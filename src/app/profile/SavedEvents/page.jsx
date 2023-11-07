@@ -16,8 +16,7 @@ export default function Events() {
     },[] )
 
     return(
-        // <SavedEvents></SavedEvents>
-        <div></div>
+        <SavedEvents></SavedEvents>
     )
 }
 

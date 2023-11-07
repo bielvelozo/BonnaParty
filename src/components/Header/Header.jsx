@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import {
-    HeaderImage,
+  HeaderImage,
   HeaderWrap,
   ImageDiv,
   StyledHeader,
@@ -129,7 +129,7 @@ function Header() {
               <Typography
                 variant="h5"
                 noWrap
-                component="a"
+                component="span"
                 href="/"
                 sx={{
                   mr: 2,
@@ -138,16 +138,17 @@ function Header() {
                   alignSelf: "flex-end",
                 }}
               >
-                <HeaderImage>
-                <Image
-                  src={"/assets/white_logo.png"}
-                  width={0}
-                  height={0}
-                  sizes="100%"
-                  alt="BonnaParty logo"
-               
-                />
-                </HeaderImage>
+                <Link href={"/"}>
+                  <HeaderImage>
+                    <Image
+                      src={"/assets/white_logo.png"}
+                      width={0}
+                      height={0}
+                      sizes="100%"
+                      alt="BonnaParty logo"
+                    />
+                  </HeaderImage>
+                </Link>
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 <MenuItem onClick={handleCloseNavMenu}>
@@ -198,7 +199,6 @@ function Header() {
               </Box>
             </Toolbar>
           </AppBar>
-
         </Container>
       </StyledHeader>
 
