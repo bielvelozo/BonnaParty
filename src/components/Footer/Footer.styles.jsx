@@ -7,6 +7,9 @@ export const FooterContainer = styled.div`
     padding-top: 38px;
     padding-bottom: 30px;
     /* margin: 0px 0px 0px 0px !important; */
+    @media(max-width: 768px) {
+        display:none;
+    }
 `
 
 

@@ -22,14 +22,20 @@ import { Container } from "@/globalStyles";
 function Main() {
   const [events, setEvents] = React.useState([]);
 
+  const shareOnWhatsApp = (event) => {
+    const text = `Confira o evento: ${event.name}. Saiba mais em http://seusite.com/Eventos/${event.id}`;
+    const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank");
+  };
+
   async function getEvents() {
     await fetch("http://localhost/BonnaParty/src/api/registerEvent.php", {
       method: "GET",
     })
       .then((events) => events.json())
-      .then((json) => setEvents(json.map((e) => e)))
+      .then((json) => setEvents(json.slice(0, 6)))
       .catch((err) => console.log(err));
-    console.log(events);
+    // console.log(events);
   }
 
   React.useEffect(() => {
@@ -37,7 +43,7 @@ function Main() {
   }, []);
 
   return (
-    <Container style={{paddingBottom:'3rem'}}>
+    <Container style={{ paddingBottom: "3rem" }}>
       <MainTitle>Conheça novos eventos</MainTitle>
       <MainContainer>
         {events.map((event, i) => (
@@ -67,7 +73,12 @@ function Main() {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button variant="outlined" size="small" sx={{ marginRight: 1 }}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  sx={{ marginRight: 1 }}
+                  onClick={() => shareOnWhatsApp(event)}
+                >
                   Compartilhar
                 </Button>
                 <Link href={`Eventos/${event.id}`}>
