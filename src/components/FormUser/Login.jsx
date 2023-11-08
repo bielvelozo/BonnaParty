@@ -39,9 +39,11 @@ export default function login() {
             .then(json => {
                 setStatus(json.message)
 
-                localStorage.setItem('name', json.name,)
-                localStorage.setItem('id', json.id,)
-                localStorage.setItem('email', json.email,)
+                if(json.status !== 0) {
+                    localStorage.setItem('name', json.name,)
+                    localStorage.setItem('id', json.id,)
+                    localStorage.setItem('email', json.email,)
+                }
         
                location.reload()
             })
