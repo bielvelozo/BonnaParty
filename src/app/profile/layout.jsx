@@ -4,19 +4,23 @@ import ProfileCards from "@/components/Profile/Cards/ProfileCards";
 import { Center } from "@/styles/profileCards.style";
 import { DivCards } from "@/styles/profileCards.style";
 import { Container } from "@/globalStyles";
+import Footer from "@/components/Footer/Footer";
 
 export default function RootLayout({ children }) {
   return (
     <>
       <HeaderProfile />
-      <Container>
-        <DivCards>
-          <Center>
-            {children}
-            <ProfileCards />
-          </Center>
-        </DivCards>
-      </Container>
+      <div>
+        <Container>
+          <DivCards>
+            <Center>
+              {children}
+              <ProfileCards />
+            </Center>
+          </DivCards>
+        </Container>
+      </div>
+          <Footer />
     </>
   );
 }

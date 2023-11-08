@@ -15,6 +15,7 @@ const GlobalStyle = createGlobalStyle`
 export const Container = styled.div`
 	width: 100%;
 	max-width: 1440px;
+	height:100vh;
 	margin: ${({ margin }) => (margin ? margin : '0 auto')};
 	padding: ${({ padding }) => (padding ? padding : '0 15px')};
 

@@ -37,7 +37,7 @@ function Main() {
   }, []);
 
   return (
-    <Container>
+    <Container style={{paddingBottom:'3rem'}}>
       <MainTitle>Conheça novos eventos</MainTitle>
       <MainContainer>
         {events.map((event, i) => (

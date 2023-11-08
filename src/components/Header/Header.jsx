@@ -115,13 +115,13 @@ function Header() {
                   }}
                 >
                   <MenuItem onClick={handleCloseNavMenu}>
-                    Explorar Eventos
+                    <Link href={"/Explorar-Eventos"}>Explorar Eventos</Link>
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu}>
                     <Link href={"/Cadastrar-Evento"}>Cadastrar Eventos</Link>
                   </MenuItem>
                   <MenuItem onClick={handleCloseNavMenu}>
-                    Central de Ajuda
+                    <Link href={"/Central-de-ajuda"}>Central de Ajuda</Link>
                   </MenuItem>
                 </Menu>
               </Box>
@@ -152,13 +152,13 @@ function Header() {
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 <MenuItem onClick={handleCloseNavMenu}>
-                <Link href={"/Explorar-Eventos"}>Explorar Eventos</Link>
+                  <Link href={"/Explorar-Eventos"}>Explorar Eventos</Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Link href={"/Cadastrar-Evento"}>Cadastrar Evento</Link>
                 </MenuItem>
                 <MenuItem onClick={handleCloseNavMenu}>
-                  Central de Ajuda
+                  <Link href={"/Central-de-ajuda"}>Central de Ajuda</Link>
                 </MenuItem>
               </Box>
 
