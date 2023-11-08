@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2023 at 02:37 AM
+-- Generation Time: Nov 08, 2023 at 06:40 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -31,9 +31,12 @@ CREATE TABLE `events` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `cep` varchar(20) NOT NULL,
+  `street` varchar(255) NOT NULL,
+  `number` int(100) NOT NULL,
+  `hood` varchar(255) NOT NULL,
   `state` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
-  `address` varchar(100) NOT NULL,
   `date` varchar(255) NOT NULL,
   `mobile` int(100) NOT NULL,
   `image_path` varchar(500) NOT NULL,
@@ -44,10 +47,10 @@ CREATE TABLE `events` (
 -- Dumping data for table `events`
 --
 
-INSERT INTO `events` (`id`, `name`, `description`, `state`, `city`, `address`, `date`, `mobile`, `image_path`, `user_id`) VALUES
-(1, 'asdfasd', 'fasdfasd', 'fasdfasdf', 'sdfasdf', 'asdfasdfasdf', '', 5455454, 'c3d5d3568f2829b8c983beaed19c6bd4.jpg', 36),
-(3, 'Evento Gay', 'Evento para todas a bibas, contamos com a presença ilustre do maior gay de todos Gabriel Gonçalves. Não Perca este Evento!!!', 'São Paulo', 'Matão', 'Av. Raimunda Ribeiro de Lima', '2023-10-17T00:23', 2147483647, 'c3d5d3568f2829b8c983beaed19c6bd4.jpg', 36),
-(4, 'asdfa', 'sdfasdf', 'asdfasdf', 'sss', 'ssssss', '2023-10-17T00:23', 2147483647, 'c3d5d3568f2829b8c983beaed19c6bd4.jpg', 36);
+INSERT INTO `events` (`id`, `name`, `description`, `cep`, `street`, `number`, `hood`, `state`, `city`, `date`, `mobile`, `image_path`, `user_id`) VALUES
+(42, 'asdfa', 'adfsdf', '5645454', 'adsfasdf', 564454, 'asdfsdf', 'Bahia', 'dsfsdf', '2023-11-24T05:26', 54545454, 'img_1699421042229.png', 38),
+(43, 'sadfasdf', 'sdfasdfasd', '1445455', 'asdfasdf', 445454, 'asdfsdf', 'Bahia', 'asdfsdf', '2023-12-06T05:39', 56455445, 'img_1699421800360.jpg', 38),
+(44, 'Evento ', 'Evento legal divertido interessante kkkkkkkkkkkkkkkkkkkkkkkkkk', '45454', 'adsfasdf', 1656, 'asdfsdf', 'Amazonas', 'afsdfsdfsdf', '2023-11-11T05:40', 65565655, 'img_1699421854274.png', 38);
 
 --
 -- Indexes for dumped tables
@@ -68,7 +71,7 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- Constraints for dumped tables
