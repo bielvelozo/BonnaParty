@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2023 at 06:40 AM
+-- Generation Time: Nov 22, 2023 at 03:02 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -39,6 +39,7 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`id`, `name`, `email`, `password`) VALUES
+(31, 'jao', 'gabrielvelozodev@gmail.com', '$2y$10$uuPskqPpqG.Mo/YynVG0Tu0Xidv40P08CC7Lcq6ZkITkVJtj2zWWO'),
 (32, 'carlos', 'carlinhos@gmail.com', '$2y$10$GPOCXOVxKxwBSXFOWgCK7.ixdbXyT0zSRi25VVfCU52WX4yBlnSpO'),
 (33, 'BielGostoso', 'gaygay@gay.com', '$2y$10$81BA9kWCqZlP7ptvNkbMJO4cgKuMl7ceJEwEw/iEb1QsmGuyp/pgK'),
 (34, 'bielzin', 'gabriel@gmail.com', '$2y$10$CMRAHD2C5rwdRAM1WOedQ.AGR2CY0Pq26dEsN43U3Q0wkn1G5zf5q'),
@@ -46,7 +47,8 @@ INSERT INTO `register` (`id`, `name`, `email`, `password`) VALUES
 (36, 'Biel', 'biel@gmail.com', '$2y$10$Jnu628c9FHNAEd.c5fsCheEoIpYZHXWkDqy1Xs2lwRWlChwJdig4W'),
 (37, 'Test', 'biel2@gmail.com', '$2y$10$PF/8AfkxTjt9sLORFd6IA.sXAvwG.qZqRjstEwZlKI5vUyq1fMMOi'),
 (38, 'Jonas', 'biel3@gmail.com', '$2y$10$lb625nH5f80ZFt4fMWMnlOQkNiZ.IzKNCf/yBd7ob6U60Vg6pY4R2'),
-(39, 'Testtt', 'biel5@gmail.com', '$2y$10$wGSe7oNd6tbs.U7eUhTUs.MdSJLkXW4nRoJbcSfvSctxqYYNds0XC');
+(39, 'Testtt', 'biel5@gmail.com', '$2y$10$wGSe7oNd6tbs.U7eUhTUs.MdSJLkXW4nRoJbcSfvSctxqYYNds0XC'),
+(40, 'Tcc', 'tcc@gmail.com', '$2y$10$POqROB/xyXm2bqdoRcamW.f3fINerjmy032ZqNDB5dHcAZQbmVNn6');
 
 --
 -- Indexes for dumped tables
@@ -66,7 +68,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

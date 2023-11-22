@@ -74,7 +74,7 @@ export const createEventFormSchema = z.object({
     .nonempty(
       "Escreva uma breve descrição para que as pessoas possam conhecer mais sobre seu evento!"
     )
-    .max(200, "A descriçao deve ter no máximo 200 letras"),
+    .max(400, "A descriçao deve ter no máximo 200 letras"),
 
   cep: z.string().nonempty("O número de cep é obrigatório"),
 
